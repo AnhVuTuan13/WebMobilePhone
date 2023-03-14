@@ -11,11 +11,13 @@ namespace WebMobilePhone_DataAccess.Data
 {
     public class AppDbContext : IdentityDbContext<User>
     {
-
-        public AppDbContext(DbContextOptions options) : base(options)
+        public AppDbContext()
         {
         }
-
+        public AppDbContext(DbContextOptions<AppDbContext> options)
+           : base(options)
+        {
+        }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<News>  News{ get; set; }
@@ -23,9 +25,9 @@ namespace WebMobilePhone_DataAccess.Data
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Rating> Ratings { get; set; }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(builder);
+            base.OnModelCreating(modelBuilder);
         }
 
     }

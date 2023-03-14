@@ -15,7 +15,7 @@ namespace WebMobilePhone_Models.Models
         public string Name { get; set; }
         [ForeignKey("Categories")]
         public int CategoryID { get; set; }
-        public Categories Categories { get; set; }
+        public Categories? Categories { get; set; }
         public string Decription { get; set; }
         public string Content { get; set; }
         public int Hot { get; set; }
@@ -23,6 +23,6 @@ namespace WebMobilePhone_Models.Models
         public double Price { get; set; }
         public double? Discount { get; set; }
         public int Amount { get; set; }
-        public virtual ICollection<Rating> Ratings { get; set; }
+        public virtual ICollection<Rating>? Ratings { get; set; }
     }
 }
