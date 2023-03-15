@@ -46,6 +46,19 @@ namespace WebMobilePhone_DataAccess.Infrastructures
             }
 
         }
+        private INewsRepository _newsRepository;
+        public INewsRepository NewsRepository
+        {
+            get
+            {
+                if (_newsRepository == null)
+                {
+                    _newsRepository = new NewsRepository(_context);
+                }
+                return _newsRepository;
+            }
+
+        }
         public AppDbContext AppDbContext => _context;
 
         public void Dispose()

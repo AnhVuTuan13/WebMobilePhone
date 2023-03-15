@@ -1,0 +1,71 @@
+﻿@{
+    //load file layout vao day
+    Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml";
+}
+
+@* de phan trang thi using cac doi tuong sau *@
+@* dong 3 de su dung ham IPagedList *@
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@* doi tuong thao tac voi file *@
+@using System.IO
+@using Microsoft.AspNetCore.Http;
+
+@using Microsoft.AspNetCore.Http;
+@using WebMobilePhone_Models.Models;
+
+
+<div class="col-md-12">
+    <div style="margin-bottom:5px;">
+        
+            <a href="/Admin/News/Create" class="btn btn-primary">Thêm</a>
+        
+        </div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">Danh sách tin tức</div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <tr>
+                    <th style="width:100px;">Ảnh</th>
+                    <th>Name</th>
+                    <th style="width:70px;">Hot</th>
+                    <th style="width:140px;">Hành động</th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @* Directory.GetCurrentDirectory() lay duong dan thu muc hien tai *@
+                            @if (item.Photo != null && File.Exists(Directory.GetCurrentDirectory() + "\\wwwroot\\Upload\\News\\" + item.Photo))
+                            {
+                                <img src="~/Upload/News/@item.Photo" style="width:100px;" />
+                            }
+                        </td>
+                        <td>@item.Name</td>
+                        <td>
+                            @if (item.Hot == 1)
+                            {<text>Hot</text>}
+                        </td>
+                        <td style="text-align:center;">
+                            
+                            <a href="/Admin/News/Update/@item.ID" class="btn btn-primary  btn-xs"><i class="fa fa-pencil"></i>&nbsp; Sửa &nbsp;&nbsp;
+                            </a>
+                            &nbsp;
+                        <a href="/Admin/News/Delete/@item.ID" class="btn btn-danger  btn-xs" onclick="return confirm('Bạn muốn xóa à')">
+                            <i class="fa fa-trash"></i> &nbsp;Xóa&nbsp;&nbsp;
+                        </a>
+                            </td>
+                    </tr>
+                }
+            </table>
+            <style type="text/css">
+                .pagination {
+                    padding: 0px;
+                    margin: 0px;
+                }
+            </style>
+            @* ham sau se thuc hien viec hien thi phan trang *@
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }))
+        </div>
+    </div>
+</div>
