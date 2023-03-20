@@ -13,6 +13,7 @@ namespace WebMobilePhone_DataAccess.Infrastructures
         public ICategoriesRepository CategoryRepository { get; }
         public IProductsRepository ProductsRepository { get; }
         public INewsRepository NewsRepository { get; }
+        public IOrdersRepository OrdersRepository { get; }
         int SaveChanges();
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebMobilePhone_DataAccess.Data;
 
@@ -11,9 +12,10 @@ using WebMobilePhone_DataAccess.Data;
 namespace WebMobilePhone_DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230319145503_SeedData")]
+    partial class SeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,21 +54,21 @@ namespace WebMobilePhone_DataAccess.Migrations
                         new
                         {
                             Id = "58cd381e-8683-4b42-b7b6-70b6274bfa84",
-                            ConcurrencyStamp = "05b0521f-638f-46ed-b323-b131367fed9d",
+                            ConcurrencyStamp = "b1fd2617-15cc-419e-a105-6cdd36e7c3ae",
                             Name = "Master",
                             NormalizedName = "MASTER"
                         },
                         new
                         {
                             Id = "97ddd633-2a4d-42b3-8f82-a5fe1d94173a",
-                            ConcurrencyStamp = "83dc61d1-d100-4fec-8a0a-bd2396886159",
+                            ConcurrencyStamp = "122779e0-e388-47df-aa50-fb5d00bc9f1b",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "399b34de-5b32-48b2-86b4-fb0881a2517c",
-                            ConcurrencyStamp = "764b7317-a5a8-4799-813c-5d00d1bb9155",
+                            ConcurrencyStamp = "2bbb0fb6-4de5-467f-bdda-3d789fe78b59",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -328,7 +330,7 @@ namespace WebMobilePhone_DataAccess.Migrations
                         new
                         {
                             ID = 1,
-                            Create = new DateTime(2023, 3, 19, 22, 56, 44, 163, DateTimeKind.Local).AddTicks(5332),
+                            Create = new DateTime(2023, 3, 19, 21, 55, 3, 597, DateTimeKind.Local).AddTicks(3019),
                             CustomerID = "08bc2fc1-5387-4033-b7d3-8208d29746ff",
                             Payment = 0,
                             Price = 13000000.0,
@@ -392,7 +394,7 @@ namespace WebMobilePhone_DataAccess.Migrations
                             Hot = 1,
                             Name = "Iphone 13 Hồng",
                             Photo = "133237103276543983_IP13Hong.jpg",
-                            Price = 13000000.0
+                            Price = 15000000.0
                         });
                 });
 
@@ -492,15 +494,15 @@ namespace WebMobilePhone_DataAccess.Migrations
                         {
                             Id = "08bc2fc1-5387-4033-b7d3-8208d29746ff",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "aa0a82d3-2978-4302-be9a-2a0e7a17ff58",
+                            ConcurrencyStamp = "1006d67b-620f-4d98-812a-77e61cd22709",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEFrgB8ixqd0Q2uW8vjDCPYeChMTVwjM/4k1BqzYEq/jS8DjOHWcepvgjjI+jYgHqXQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAyWm0yTfmP2j8j7usAjALMMLHqmZ11mq0zlrWdtxpIUFfg/XlCRovGIDKsZeeYDYg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "9ca89313-018d-41db-8c9d-61a50f273000",
+                            SecurityStamp = "656cd126-70a0-4c2e-9586-4ee103a1b292",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -508,15 +510,15 @@ namespace WebMobilePhone_DataAccess.Migrations
                         {
                             Id = "9fa0160f-c2c6-4124-8221-4f465e979807",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ebe0503e-1f35-4e81-83f4-cfdd718fe9cf",
+                            ConcurrencyStamp = "e5da0e8a-7f4a-40d1-abc4-9af57ecc891f",
                             Email = "Admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "BLOGOWNER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAENv3FgdisoJCRQWYhNVqsPQyTLJTLpB+oJXns5XG9Q9mCerUH7fyPPT4XKtnvg+etA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECtt3QM5Z3vfsg7Vlyqvwe1I4o2i012YTADz3Mvew7n4Gmk5u351dymQbl/PAC46dg==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d11876fc-ac02-4827-9c4f-36cea9f9e013",
+                            SecurityStamp = "06af3452-207e-48b2-b4c7-dcacfb4686e7",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });

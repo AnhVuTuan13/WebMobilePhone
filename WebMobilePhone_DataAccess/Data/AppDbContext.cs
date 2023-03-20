@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebMobilePhone_DataAccess.Configurations;
 using WebMobilePhone_Models.Models;
 
 namespace WebMobilePhone_DataAccess.Data
@@ -28,6 +29,10 @@ namespace WebMobilePhone_DataAccess.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new RoleSeedConfiguration());
+            modelBuilder.ApplyConfiguration(new UserSeedConfiguration());
+            modelBuilder.ApplyConfiguration(new UserRoleSeedConfiguration());
+            modelBuilder.Seed();
         }
 
     }

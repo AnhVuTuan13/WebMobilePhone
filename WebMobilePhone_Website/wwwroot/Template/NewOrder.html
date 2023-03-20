@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Thông tin đơn hàng mới của khác hàng:{{CustomerName}}</title>
+</head>
+<body>
+    <!--Thông tin đơn hàng mới của khác hàng:{{CustomerName}}<br />
+    Điện thoai:{{Phone}}<br />
+    Email:{{Email}}<br />
+    Địa Chỉ:{{Address}}<br />
+    Trị giá:{{Total}}-->
+    <table class="table table-bordered table-hover" border=0>
+        <tr>
+            <th>Tên khách hàng : </th>
+            <td>{{CustomerName}}</td>
+        </tr>
+
+        <tr>
+            <th>Địa chỉ email: </th>
+            <td>{{Email}}</td>
+        </tr>
+        <tr>
+            <th>Địa chỉ nhận hàng :</th>
+            <td>{{Address}}</td>
+        </tr>
+        <tr>
+            <th>Số điện thoại : </th>
+            <td>{{Phone}}</td>
+        </tr>
+        <tr>
+            <th>Tổng tiền : </th>
+            <td>{{Total}}</td>
+        </tr>
+
+    </table>
+    <!--<table class="table table-bordered table-hover" border="0">
+        <tr>
+            <th>Tên sản phẩm </th>-->
+
+            <!--<th> Ảnh </th>
+
+            <th>Giá bán </th>
+
+            <th>Số lượng mua</th>-->
+           
+        <!--</tr>
+      <tbody id="danhsach">
+
+      </tbody>
+
+
+     </table>
+</body>
+
+</html>
+<script>
+    var Order = {
+        data: [{{listOrder}}];
+        ViewOrder: function () {
+            var list = [];
+            var danhsach = document.getElementById('danhsach');
+            this.data.forEach(function (item) {
+                if (item != null) {
+                    list.push("<tr><td>" + item.Id +"></td></tr>);
+                }
+            })
+            for (var i = 0; i < list.length; i++) {
+                danhsach.innerHTML += list[i];
+            }
+        }
+    }
+    Order.ViewOrder();-->
+
+    
+<!--</script>-->

@@ -59,6 +59,19 @@ namespace WebMobilePhone_DataAccess.Infrastructures
             }
 
         }
+        private IOrdersRepository _ordersRepository;
+        public IOrdersRepository OrdersRepository
+        {
+            get
+            {
+                if (_ordersRepository == null)
+                {
+                    _ordersRepository = new OrdersRepository(_context);
+                }
+                return _ordersRepository;
+            }
+
+        }
         public AppDbContext AppDbContext => _context;
 
         public void Dispose()
