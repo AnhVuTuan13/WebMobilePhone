@@ -11,6 +11,7 @@ namespace WebMobilePhone_Models.Models
     {
         public string? Avata { get; set; }
         public int? Status { get; set; }
+        public string Address { get; set; }
         public virtual ICollection<Orders> Orders { get; set; }
     }
 }

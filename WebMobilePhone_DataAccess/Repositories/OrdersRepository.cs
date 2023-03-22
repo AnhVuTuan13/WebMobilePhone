@@ -73,6 +73,9 @@ namespace WebMobilePhone_DataAccess.Repositories
             return result.LINQResultToDataTable();
         }
 
-      
+        public List<Orders> GetByOrderByDescending()
+        {
+            return Context.Set<Orders>().OrderByDescending(o => o.ID).ToList();
+        }
     }
 }

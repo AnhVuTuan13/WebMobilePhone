@@ -24,7 +24,9 @@ namespace WebMobilePhone_DataAccess.Configurations
                     NormalizedUserName = "USER@LOCALHOST.COM",
                     UserName = "user@localhost.com",
                     PasswordHash = hasher.HashPassword(null, "P@ssword1"),
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    Address = "Hà Nội"
+                    
                 },
                 new User
                 {
@@ -34,7 +36,8 @@ namespace WebMobilePhone_DataAccess.Configurations
                     NormalizedUserName = "BLOGOWNER@LOCALHOST.COM",
                     UserName = "admin@localhost.com",
                     PasswordHash = hasher.HashPassword(null, "P@ssword1"),
-                    EmailConfirmed = true
+                    EmailConfirmed = true,
+                    Address = "Hà Nam"
                 }
                 );
         }

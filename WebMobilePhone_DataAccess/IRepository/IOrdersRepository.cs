@@ -16,6 +16,6 @@ namespace WebMobilePhone_DataAccess.IRepository
         public DataTable DataTableCreatePrice(DateTime fromDate,  DateTime toDate );
         public DataTable DataTableSelectTop2(DateTime fromDate, DateTime toDate);
         public DataTable DataTableSelectTop1ASC(DateTime fromDate, DateTime toDate);
-
+        public List<Orders> GetByOrderByDescending();
     }
 }

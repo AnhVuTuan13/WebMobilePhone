@@ -72,6 +72,46 @@ namespace WebMobilePhone_DataAccess.Infrastructures
             }
 
         }
+
+        private IOrderDetailRepository _orderDetailRepository;
+        public IOrderDetailRepository OrderDetailRepository
+        {
+            get
+            {
+                if (_orderDetailRepository == null)
+                {
+                    _orderDetailRepository = new OrderDetailRepository(_context);
+                }
+                return _orderDetailRepository;
+            }
+
+        }
+
+        private IUserRepository _userRepository;
+        public IUserRepository UserRepository
+        {
+            get
+            {
+                if (_userRepository == null)
+                {
+                    _userRepository = new UserRepository(_context);
+                }
+                return _userRepository;
+            }
+
+        }
+        private IUserRoleRepository _userRoleRepository;
+        public IUserRoleRepository UserRoleRepository
+        {
+            get
+            {
+                if (_userRoleRepository == null)
+                {
+                    _userRoleRepository = new UserRoleRepository(_context);
+                }
+                return _userRoleRepository;
+            }
+        }
         public AppDbContext AppDbContext => _context;
 
         public void Dispose()

@@ -1,0 +1,115 @@
+﻿@{
+    Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml";
+}
+@* để sử dụng phân trang thì using dòng sau *@
+@using X.PagedList
+@* để sử dụng hàm IpageList thì using *@
+@using X.PagedList.Mvc.Core
+@using System.IO
+@using WebMobilePhone_Models.Models;
+@inject WebMobilePhone_DataAccess.Infrastructures.IUnitOfWork unitOfWork
+@functions{
+   
+    public User GetCustomer(string idCustomer)
+    {
+        User record = unitOfWork.UserRepository.Find(idCustomer);  
+        return record != null ? record : new User();
+    }
+}
+<div class="col-md-12">
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">Danh sách đơn hàng</div>
+        <div class="panel-body">
+            <table class="table table-bordered table-hover">
+                <tr>
+
+                    <th>Tên</th>
+                    <th>Điện thoại</th>
+                    <th>Ngày</th>
+                    <th>Giá</th>
+                    <th>Hình thức thanh toán</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+
+
+                        <td>@GetCustomer(item.CustomerID).UserName</td>
+                        <td>@GetCustomer(item.CustomerID).PhoneNumber</td>
+                        <td>@item.Create.ToString("dd/MM/yyyy")</td>
+                        <td><text>@string.Format("{0:#,#.}", item.Price)</text></td>
+                        <td>
+                            @if (item.Payment == 0)
+                            {
+                                <text>Tiền mặt</text>
+                            }
+                            else
+                            {
+                                <text>PayPal</text>
+                            }
+                        </td>
+
+                        <td>
+                            @if (item.Status == 1)
+                            {<text>Đã giao hàng</text>}
+                        else
+                        {
+                            <text>chưa giao hàng</text>
+                        }
+                        </td>
+
+                        <td style="text-align:center;">
+
+                            <a href="/Admin/Orders/Detail/@item.ID">Chi tiết</a>&nbsp;
+                            @if (item.Status == 0)
+                            {
+                                
+                                <a @*href="/Admin/Orders/Delivery/@item.ID"*@ id="Delevery" value="@item.ID" class="label label-info" onclick="return confirm_send('Bạn muốn gửi thông tin qua mail cho khách không',@item.ID)">Giao hàng</a>
+                            }
+                             &nbsp;
+                            @if(item.Status == 0)
+                            {
+                                  <a href="/Admin/Orders/Delete/@item.ID" class="btn btn-danger  btn-xs" onclick="return confirm('Bạn muốn xóa à')">
+                                                <i class="fa fa-trash"></i> &nbsp;Xóa&nbsp;&nbsp;
+                                            </a>
+                            }
+                          
+                        </td>
+                    </tr>
+                }
+
+            </table>
+           
+            <style type="text/css">
+                .pagination {
+                    padding: 0px;
+                    margin: 0px;
+                }
+            </style>
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new { page = page }))
+        </div>
+    </div>
+</div>
+<script src="~/Admin/assest/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    var devleveyID = $('#Delevery').val();
+    function confirm_send(question,id) {
+        if (confirm(question)) {
+          
+           
+            var url = '@Url.Action("SendMail", "Orders")';
+
+            var MailURL = url + '?Id=' + id;
+            window.location.href = MailURL;
+            
+        } else {
+            var url = '@Url.Action("Delivery", "Orders")';
+            
+            var DeleveryURL = url + '?Id=' + id;
+            window.location.href = DeleveryURL;
+        }
+    }
+</script>

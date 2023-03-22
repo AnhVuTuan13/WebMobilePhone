@@ -5,11 +5,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using System.Data.Common;
+using System.Data;
 
 namespace WebMobilePhone_DataAccess.IRepository
 {
-    public interface IUserRepository : IBaseRepository<User>
+    public interface IOrderDetailRepository : IBaseRepository<OrderDetail>
     {
-        public List<User> GetByOrderByDescending();
+       public List<OrderDetail> GetOrdersByOrderID(int orderID);
+     
     }
 }
