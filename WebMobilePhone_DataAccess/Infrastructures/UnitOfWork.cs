@@ -112,6 +112,18 @@ namespace WebMobilePhone_DataAccess.Infrastructures
                 return _userRoleRepository;
             }
         }
+        private IDiscountRepository _discountRepositorys;
+        public IDiscountRepository DiscountRepository
+        {
+            get
+            {
+                if (_discountRepositorys == null)
+                {
+                    _discountRepositorys = new DiscountRepository(_context);
+                }
+                return _discountRepositorys;
+            }
+        }
         public AppDbContext AppDbContext => _context;
 
         public void Dispose()

@@ -24,6 +24,29 @@
         Categories record = unitOfWork.CategoryRepository.Find(_CategoryID);
         return record.Name != null ? record.Name : "";
     }
+    public double getDiscount(Products products)
+    {
+
+        if (products.DiscountID == null)
+        {
+            return 0;
+        }
+        else
+        {
+            Discount discount = unitOfWork.DiscountRepository.Find(products.DiscountID);
+            if (discount is not null)
+            {
+                if (discount.StartDate <= DateTime.Now && DateTime.Now <= discount.EndDate)
+                {
+                    return discount.PercentDiscount;
+
+                }
+            }
+           return 0;
+
+        }
+    }
+}
 
    
 }
@@ -77,7 +100,7 @@
                                     <td>@GetCategory(item.CategoryID)</td>
                                     <td>@item.Amount</td>
                                     <td>@item.Price</td>
-                                    <td>@item.Discount %</td>
+                                    <td>@getDiscount(item) %</td>
                                     <td>
                                         @if (item.Hot == 1)
                                         {<text>Hot</text>}

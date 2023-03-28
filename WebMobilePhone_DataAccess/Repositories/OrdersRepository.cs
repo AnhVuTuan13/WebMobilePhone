@@ -41,13 +41,15 @@ namespace WebMobilePhone_DataAccess.Repositories
                           on o.ID equals od.OrderID
                           join pd in Context.Set<Products>().AsEnumerable()
                           on od.ProductID equals pd.ID
+                          join ds in Context.Set<Discount>().AsEnumerable()
+                          on pd.DiscountID equals ds.Id
                           where o.Create >= fromDate && o.Create <= toDate
-                          group new { od, pd } by new { od.ProductID, pd.Name, pd.Price, pd.Discount } into grp
+                          group new { od, pd, ds } by new { od.ProductID, pd.Name, pd.Price, ds.PercentDiscount } into grp
                           select new
                           {
                               Name = grp.First().pd.Name,
                               Price = grp.First().pd.Price,
-                              Discount = grp.First().pd.Discount,
+                              Discount = grp.First().ds.PercentDiscount,
                               soluongban = grp.Sum(k => k.od.Quantity)
                           }).OrderBy(x => x.soluongban).Take(1);
             return result.LINQResultToDataTable();
@@ -60,17 +62,24 @@ namespace WebMobilePhone_DataAccess.Repositories
                           on o.ID equals od.OrderID
                           join pd in Context.Set<Products>().AsEnumerable()
                           on od.ProductID equals pd.ID
+                          join ds in Context.Set<Discount>().AsEnumerable()
+                          on pd.DiscountID equals ds.Id
                           where o.Create >= fromDate && o.Create <= toDate
-                          group new { od, pd } by new { od.ProductID, pd.Name, pd.Price, pd.Discount } into grp
+                          group new { od, pd, ds } by new { od.ProductID, pd.Name, pd.Price, ds.PercentDiscount } into grp
                           select new
                           {
                               Name = grp.First().pd.Name,
                               Price = grp.First().pd.Price,
-                              Discount = grp.First().pd.Discount,
+                              Discount = grp.First().ds.PercentDiscount,
                               soluongban = grp.Sum(k => k.od.Quantity)
                           }).OrderByDescending(x => x.soluongban).Take(2);
 
             return result.LINQResultToDataTable();
+        }
+
+        public List<Orders> GetByOrderByCustomer(string id)
+        {
+            return Context.Set<Orders>().Where(tbl => tbl.CustomerID == id).ToList();
         }
 
         public List<Orders> GetByOrderByDescending()

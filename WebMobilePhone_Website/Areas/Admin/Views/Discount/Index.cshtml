@@ -1,0 +1,77 @@
+﻿@model List< WebMobilePhone_Models.Models.Discount>
+@using Microsoft.AspNetCore.Http;
+@using WebMobilePhone_Models.Models;
+@using WebMobilePhone_DataAccess.Data;
+@{
+    ViewBag.Title = "Discount";
+    Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml";
+}
+
+@section header{
+    <p style="margin-top: -10px;">Giảm Giá </p>
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <div>
+                    <a href="@Url.Action("Create")" class="btn btn-success">
+                        <i class="fa fa-plus-circle"></i>&nbsp; Thêm mới &nbsp;
+                    </a>
+                </div>
+            </div>
+            <div class="box-body">
+                <table id="DepartmentTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr style="text-align:center;">
+                            <th>#</th>
+                            <th>Phần trăm giảm giá</th>
+                            <th>Ngày bắt đầu</th>
+                            <th>Ngày Kết thúc</th>
+                            <th style="width:30%">Hành Động</th>
+                        </tr>
+                    </thead>
+                    @if (Model.Count > 0)
+                    {
+                        var i = 1;
+                        <tbody>
+                            @foreach (var f in Model)
+                            {
+                                <tr id="data">
+                                    <td>
+                                        @i
+                                    </td>
+
+                                    <td>
+                                        @f.PercentDiscount
+                                    </td>
+                                       <td>
+                                        @f.StartDate.ToString("dd/MM/yyy")
+                                    </td>   <td>
+                                        @f.EndDate.ToString("dd/MM/yyy")
+                                    </td>
+                                    <td>
+
+                                        <a href="/Admin/Discount/Update/@f.Id" class="btn btn-primary  btn-xs">
+                                            <i class="fa fa-pencil"></i>&nbsp; Sửa &nbsp;&nbsp;
+                                        </a>
+
+                                        &nbsp;
+
+                                        <a href="/Admin/Discount/Delete/@f.Id" class="btn btn-danger  btn-xs" onclick="return confirm('Bạn muốn xóa à')">
+                                            <i class="fa fa-trash"></i> &nbsp;Xóa&nbsp;&nbsp;
+                                        </a>
+                                    </td>
+
+                                </tr>
+                                i = i + 1;
+                            }
+                        </tbody>
+                    }
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -17,6 +17,11 @@ namespace WebMobilePhone_DataAccess.Repositories
         {
         }
 
+        public User GetByEmail(string email)
+        {
+            return Context.Set<User>().Where(x => x.Email.Equals(email)).FirstOrDefault();
+        }
+
         public List<User> GetByOrderByDescending()
         {
            return Context.Set<User>().OrderByDescending(anhxa => anhxa.Id).ToList();

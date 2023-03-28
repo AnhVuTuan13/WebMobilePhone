@@ -83,9 +83,11 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
             //tao data
             DataTable dt = new DataTable(); 
             DataTable dt2 = new DataTable(); 
-            DataTable dt3 = new DataTable(); 
+            DataTable dt3 = new DataTable();
 
-           
+            dt = unitOfWork.OrdersRepository.DataTableCreatePrice(fromDate, toDate);
+            dt2 = unitOfWork.OrdersRepository.DataTableSelectTop2(fromDate, toDate);
+            dt3 = unitOfWork.OrdersRepository.DataTableSelectTop1ASC(fromDate, toDate);
             //doanh số
 
             //top san phẩm bán chạy
@@ -95,7 +97,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
             ws.Cell("D4").Value = "Từ ngày " + fromDate.ToString("dd/MM/yyyy") + " đến ngày " + toDate.ToString("dd/MM/yyyy");
             if (dt is not null)
             {
-                dt = unitOfWork.OrdersRepository.DataTableCreatePrice(fromDate, toDate);
+                
                 foreach (DataRow item in dt.Rows)
                 {
                     ws.Cell("A" + (startRow + iCount)).Value = iCount;
@@ -108,7 +110,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
                     }
                 }
                
-                dt2 = unitOfWork.OrdersRepository.DataTableSelectTop2(fromDate, toDate);
+               
                 foreach (DataRow item in dt2.Rows)
                 {
                     ws.Cell("D" + (startRow + iCount2)).Value = (XLCellValue)item["Name"].ToString();
@@ -122,7 +124,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
                     }
                 }
                 
-                dt3 = unitOfWork.OrdersRepository.DataTableSelectTop1ASC(fromDate, toDate);
+                
                 foreach (DataRow item in dt3.Rows)
                 {
                     ws.Cell("H" + (startRow + iCount3)).Value = (XLCellValue)item["Name"].ToString(); ;

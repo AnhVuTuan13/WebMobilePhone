@@ -1,0 +1,130 @@
+﻿@using WebMobilePhone_Models.Models;
+@using WebMobilePhone_Website.Models;
+@inject WebMobilePhone_DataAccess.Infrastructures.IUnitOfWork unitOfWork
+@using Microsoft.AspNetCore.Http;
+@{
+    Layout = "/Views/Shared/_LayoutEmty.cshtml";
+}
+@functions {
+
+    public User GetCustomer(string id)
+    {
+        User record = unitOfWork.UserRepository.Find(id);
+        return record != null ? record : new User();
+    }
+    //public OrdersRecord GetOrder(int idOrder)
+    //{
+    //    OrdersRecord record = db.Orders.Where(o => o.ID == idOrder).FirstOrDefault();
+    //    return record != null ? record : new OrdersRecord();
+    //}
+
+    public Products GetProduct(int idProduct)
+    {
+        Products record = unitOfWork.ProductsRepository.Find(idProduct);
+        return record != null ? record : new Products();
+    }
+    public double getMoney(Products products)
+    {
+        if (products.DiscountID == null)
+        {
+
+            return Convert.ToDouble((products.Price * 0) / 100);
+        }
+        else
+        {
+            Discount discount = unitOfWork.DiscountRepository.Find(products.DiscountID);
+            if (discount is not null)
+            {
+                if (discount.StartDate <= DateTime.Now && DateTime.Now <= discount.EndDate)
+                {
+                    return Convert.ToDouble((products.Price * discount.PercentDiscount) / 100);
+
+                }
+            }
+            return Convert.ToDouble((products.Price * 0) / 100);
+
+        }
+    }
+}
+<div class="col-md-12">
+
+    <a href="/" class="button black">Quay lại </a>
+    <div class="panel panel-primary">
+        <h2> Quý khách đã đặt hàng thành công. Sản phẩm sẽ được giao trong vòng 7 ngày .</h2>
+        <div class="panel-body">
+            @*thông tin khách hàng*@
+            @{
+
+                User customer = GetCustomer(ViewBag.idkh);
+            }
+            <div><p>Mã Đơn hàng:</p></div>
+            <table class="table table-bordered table-hover" border=0>
+                <tr>
+                    <th>Tên khách hàng : </th>
+                    <td>@customer.UserName</td>
+                </tr>
+
+                <tr>
+                    <th>Địa chỉ email: </th>
+                    <td>@customer.Email</td>
+                </tr>
+                <tr>
+                    <th>Địa chỉ nhận hàng :</th>
+                    <td>@customer.Address</td>
+                </tr>
+                <tr>
+                    <th>Số điện thoại : </th>
+                    <td>@customer.PhoneNumber</td>
+                </tr>
+
+
+            </table>
+            @* thông tin sảng phẩm *@
+            <h3> Danh sách các sản phẩm đã mua và chờ xác nhận </h3>
+
+            <table class="table table-bordered table-hover" border="0">
+                <tr>
+                    <th>Tên sản phẩm </th>
+
+                    <th> Ảnh </th>
+
+                    <th>Giá bán </th>
+
+                    <th>Số lượng mua</th>
+                    <th>Hành động</th>
+                </tr>
+                @if (Model.Count > 0)
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        Products record = GetProduct(item.ProductID);
+
+                        <tr>
+                            <td>@record.Name</td>
+                            <td><img src="~/Upload/Products/@record.Photo" style="width:100px;" /></td>
+
+                            <td>@string.Format("{0:#,#.}", record.Price - getMoney(record))</td>
+
+                            <td>@item.Quantity</td>
+
+                            <td><a href="/Cart/deleteBill/@item.ID"><i class="fa fa-trash"></i></a></td>
+
+                        </tr>
+
+
+                    }
+                }
+
+
+            </table>
+            <style type="text/css">
+                .pagination {
+                    padding: 0px;
+                    margin: 0px;
+                }
+            </style>
+
+        </div>
+    </div>
+</div>

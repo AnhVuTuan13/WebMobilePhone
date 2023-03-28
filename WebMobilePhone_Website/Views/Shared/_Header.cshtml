@@ -1,0 +1,225 @@
+﻿@using WebMobilePhone_Models.Models;
+@* sử dụng session thì phải dùng dòng sau *@
+@using Microsoft.AspNetCore.Http
+@inject WebMobilePhone_DataAccess.Infrastructures.IUnitOfWork unitOfWork;
+@inject WebMobilePhone_Website.Models.Cart cart;
+@functions{
+
+    public List<Categories> Categories()
+    {
+        List<Categories> listRecord = unitOfWork.CategoryRepository.GetByOrderByDescending();
+        return listRecord;
+    }
+
+    //public List<CategoriesRecord> SubCategories(int CategoryID)
+    //{
+    //    List<CategoriesRecord> listRecord = db.Categories.Where(c => c.ParentID == CategoryID).OrderByDescending(c => c.ID).ToList();
+    //    return listRecord;
+    //}
+     public double getMoney(Products products)
+    {
+        if (products.DiscountID == null)
+        {
+
+            return Convert.ToDouble((products.Price * 0) / 100);
+        }
+        else
+        {
+            Discount discount = unitOfWork.DiscountRepository.Find(products.DiscountID);
+            if(discount is not null)
+            {
+                if ( discount.StartDate <= DateTime.Now && DateTime.Now <= discount.EndDate)
+                {
+                    return Convert.ToDouble((products.Price * discount.PercentDiscount) / 100);
+
+                }
+            }
+           return Convert.ToDouble((products.Price * 0) / 100);
+
+            }
+        }
+}
+
+<header id="header">
+    <!-- top header -->
+    <div class="top-header" style="background: #464646 ">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6"> <span><i class="fa fa-phone"></i> (08) 86505360 </span> <span><i class="fa fa-envelope-o"></i> <a href="mailto:support@mail.com">VTMobile@mail.com</a></span> </div>
+                <partial name="_LoginPartial" />
+            </div>
+        </div>
+    </div>
+    <!-- end top header -->
+    <!-- middle header -->
+    <script language="javascript">
+        //---
+        function search() {
+            var key = document.getElementById("key").value;
+            //di chuyen den url tim kiem
+            location.href = "/Search/SearchProducts/?key=" + key;
+        }
+        //---
+        //bat su kien keyup cua id=key
+        $(document).ready(function () {
+            $("#key").keyup(function () {
+                //lay gia tri cua textbox co id=key
+                var key = $("#key").val();
+                if (key != "") {
+                    $(".smart-search-list").attr("style", "display:block");
+                    //---
+                    $.ajax({
+                        url: "/Search/Ajax?key=" + key,
+                        success: function (result) {
+                            //lam rong danh sach cac the li
+                            $(".smart-search-list ul").empty();
+                            //them ket qua vao the li
+                            $(".smart-search-list ul").append(result);
+                        }
+                    });
+                    //---
+                }
+                else {
+                    $(".smart-search-list").attr("style", "display:none");
+                }
+            });
+        });
+        //---
+    </script>
+    <div class="mid-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-3 logo " style="margin-top:12px"> <a href="index.html" style="height:70px"> <img src="~/Frontend/images/logo1.jpg" style="height:70px; width:auto; padding-left:20px" alt="VTMobile - Hệ thống bán lẻ điện thoại cũ mới tốt giá rẻ uy tín nhất Việt Nam" title="VTMobile" class="img-responsive" width="151" height="34" style="background: #026999"> </a> </div>
+                <div class="col-xs-12 col-sm-12 col-md-6 header-search">
+                    <!--<Tìm kiếm thông minh >-->
+                    <div style="margin-top:25px;" id="smart-search">
+                        <input type="text" value="" placeholder="Nhập từ khóa tìm kiếm..." id="key" class="input-control">
+                        <button style=" background: transparent; border: 0; outline: none; position: absolute; top: 41%; right: 18px; color: #898989; /* width: 23px; */ font-size: 20px;" type="submit"> <i class="fa fa-search" onclick="return search();"></i> </button>
+                        @* --------------- *@
+                        <div class="smart-search-list">
+                            <ul>
+                                <li><a href="#"><img src="/Upload/Products/132195020732826532_8.jpg" /> Samsung</a></li>
+                                <li><a href="#"><img src="/Upload/Products/132195020732826532_8.jpg" /> Samsung</a></li>
+                                <li><a href="#"><img src="/Upload/Products/132195020732826532_8.jpg" /> Samsung</a></li>
+                            </ul>
+                        </div>
+                        @* --------------- *@
+                    </div>
+                    <!--</form>-->
+                </div>
+                <style>
+                    #smart-search {
+                        position: relative;
+                    }
+
+                    .smart-search-list {
+                        position: absolute;
+                        width: 100%;
+                        background: white;
+                        z-index: 1;
+                        display: none;
+                    }
+
+                        .smart-search-list img {
+                            width: 70px;
+                            margin-right: 5px;
+                        }
+
+                        .smart-search-list ul {
+                            padding: 0px;
+                            margin: 0px;
+                            list-style: none;
+                        }
+
+                        .smart-search-list li {
+                            border-bottom: 1px solid #dddddd;
+                        }
+                </style>
+                @{
+                    List<Items> _cart = cart.GetCart(Context.Session);
+                    int intSoLuongSanPham = 0;
+                    if (_cart != null)
+                        intSoLuongSanPham = _cart.Count;
+                }
+                <div class="col-xs-12 col-sm-12 col-md-3 mini-cart">
+                    <div class="wrapper-mini-cart">
+                        <span class="icon"><i class="fa fa-shopping-cart"></i></span> <a asp-area="" asp-controller="Cart" asp-action="Index"> <span class="mini-cart-count"> @intSoLuongSanPham </span> sản phẩm <i class="fa fa-caret-down"></i></a>
+                        <div class="content-mini-cart">
+                            <div class="has-items">
+                                <ul class="list-unstyled">
+                                    @if (_cart != null)
+                                    {
+                                        double price = 0;
+                                        foreach (var item in _cart)
+                                        {
+                                            //tinh gia san pham sau khi da giam gia
+                                            price = Convert.ToDouble(item.ProductItem.Price - getMoney(item.ProductItem));
+                                            <li class="clearfix" id="item-1853038">
+                                                <div class="image">
+                                                    <a href="/Products/Detail/@item.ProductItem.ID">
+                                                        <img alt="@item.ProductItem.Name" src="/Upload/Products/@item.ProductItem.Photo" title="@item.ProductItem.Name" class="img-responsive">
+                                                    </a>
+                                                </div>
+                                                <div class="info">
+                                                    <h3><a href="/Products/Detail/@item.ProductItem.ID">@item.ProductItem.Name</a></h3>
+                                                    <p>@item.Quantity x @string.Format("{0:#,#.}", item.Quantity * price)₫</p>
+                                                </div>
+                                                <div> <a href="/Cart/Remove/@item.ProductItem.ID"> <i class="fa fa-times"></i></a> </div>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
+                                <a href="/Cart/Checkout" class="button">Thanh toán</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end middle header -->
+        <!-- bottom header -->
+        <div class="bottom-header">
+            <div class="container">
+                <div class="clearfix">
+                    <ul class="main-nav hidden-xs hidden-sm list-unstyled">
+                        <li class="active"><a href="/">Trang chủ</a></li>
+                        <li class="has-submenu">
+                            <a href="#"> <span>Sản phẩm</span><i class="fa fa-caret-down" style="margin-left: 5px;"></i> </a>
+                            <ul class="list-unstyled level1">
+                                @{
+                                    List<Categories> listCategories = Categories();
+                                }
+                                @foreach (var item in listCategories)
+                                {
+                                    <li><a href="/Products/Category/@item.Id">@item.Name</a></li>
+                                    @*List<CategoriesRecord> listSubCategory = SubCategories(item.ID);
+                    foreach (var itemSub in listSubCategory)
+                    {
+                        <li style="padding-left:20px;"><a href="/Products/Category/@itemSub.ID">@itemSub.Name</a></li>
+                    }*@
+
+                                }
+                            </ul>
+                        </li>
+                        <li><a href="/Cart">Giỏ hàng</a></li>
+                        <li><a href="/News">Tin tức</a></li>
+
+                        @if (Context.Session.GetString("email") != null)
+                        {
+                            <li><a href="/Cart/DetailBill">Đơn hàng</a></li>
+                            <li><a href="/Cart/HistoryBill">Lịch sử</a></li>
+                        }
+                    </ul>
+                    <a href="javascript:void(0);" class="toggle-main-menu hidden-md hidden-lg"> <i class="fa fa-bars"></i> </a>
+                    <ul class="list-unstyled mobile-main-menu hidden-md hidden-lg" style="display:none">
+                        <li class="active"><a href="index.php">Trang chủ</a></li>
+                        <li><a href="#">Giới thiệu</a></li>
+                        <li><a href="index.php?controller=tintuc">Tin tức</a></li>
+                        <li><a href="index.php?controller=lienhe">Liên hệ</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end bottom header -->
+</header>

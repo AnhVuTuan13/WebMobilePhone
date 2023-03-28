@@ -36,7 +36,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
             string _CategoryID = fc["CategoryID"].ToString().Trim();
             string _Description = fc["Description"].ToString().Trim();
             string _Content = fc["Content"].ToString().Trim();
-            string _Discount = fc["Discount"].ToString().Trim();
+           
             int _Hot = fc["Hot"] != "" && fc["Hot"] == "on" ? 1 : 0;
 
             if (fc["Name"].ToString() == "")
@@ -70,7 +70,6 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
                     //update ban ghi
                     record.Name = _Name;
                     record.Price = Convert.ToDouble(_Price);
-                    record.Discount = Convert.ToDouble(_Discount);
                     record.CategoryID = Convert.ToInt32(_CategoryID);
                     record.Amount = Convert.ToInt32(_Amount);
                     record.Decription = _Description;
@@ -145,7 +144,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
                 var record = new Products();
                 record.Price = Convert.ToDouble(_Price);
                 record.Amount = Convert.ToInt32(_Amount);
-                record.Discount = Convert.ToDouble(_Discount);
+               
                 record.CategoryID = Convert.ToInt32(_CategoryID);
                 record.Decription = _Description;
                 record.Content = _Content;
@@ -159,7 +158,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
                 record.Name = _Name;
 
                 record.Amount = Convert.ToInt32(_Amount);
-                record.Discount = Convert.ToDouble(_Discount);
+               
                 record.CategoryID = Convert.ToInt32(_CategoryID);
                 record.Decription = _Description;
                 record.Content = _Content;
@@ -173,7 +172,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
                 record.Name = _Name;
                 record.Price = Convert.ToDouble(_Price);
 
-                record.Discount = Convert.ToDouble(_Discount);
+               
                 record.CategoryID = Convert.ToInt32(_CategoryID);
                 record.Decription = _Description;
                 record.Content = _Content;
@@ -189,7 +188,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
                 record.Name = _Name;
                 record.Price = Convert.ToDouble(_Price);
                 record.Amount = Convert.ToInt32(_Amount);
-                record.Discount = Convert.ToDouble(_Discount);
+              
                 record.CategoryID = Convert.ToInt32(_CategoryID);
                 record.Decription = _Description;
                 record.Content = _Content;

@@ -17,7 +17,7 @@ namespace WebMobilePhone_DataAccess.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.12")
+                .HasAnnotation("ProductVersion", "6.0.15")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -52,21 +52,21 @@ namespace WebMobilePhone_DataAccess.Migrations
                         new
                         {
                             Id = "58cd381e-8683-4b42-b7b6-70b6274bfa84",
-                            ConcurrencyStamp = "bb7f1604-4615-4783-a75a-6029daea0bce",
+                            ConcurrencyStamp = "160c5d1c-0f3e-4330-8ced-6fca10b04761",
                             Name = "Master",
                             NormalizedName = "MASTER"
                         },
                         new
                         {
                             Id = "97ddd633-2a4d-42b3-8f82-a5fe1d94173a",
-                            ConcurrencyStamp = "ed7bf85c-3f65-4d22-8438-b63dddfb463b",
+                            ConcurrencyStamp = "fde86c79-7a68-4887-99c5-5ca9352ffacb",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "399b34de-5b32-48b2-86b4-fb0881a2517c",
-                            ConcurrencyStamp = "5ee8ecd8-d853-45ee-92d6-90768d02a288",
+                            ConcurrencyStamp = "d844cb7b-e1b6-4f0d-9f58-8d9b869abf14",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -223,6 +223,37 @@ namespace WebMobilePhone_DataAccess.Migrations
                         });
                 });
 
+            modelBuilder.Entity("WebMobilePhone_Models.Models.Discount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("PercentDiscount")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Discounts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            EndDate = new DateTime(2023, 7, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PercentDiscount = 5.0,
+                            StartDate = new DateTime(2023, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
+                });
+
             modelBuilder.Entity("WebMobilePhone_Models.Models.News", b =>
                 {
                     b.Property<int>("ID")
@@ -328,7 +359,7 @@ namespace WebMobilePhone_DataAccess.Migrations
                         new
                         {
                             ID = 1,
-                            Create = new DateTime(2023, 3, 20, 22, 28, 24, 243, DateTimeKind.Local).AddTicks(2156),
+                            Create = new DateTime(2023, 3, 27, 21, 55, 14, 411, DateTimeKind.Local).AddTicks(5662),
                             CustomerID = "08bc2fc1-5387-4033-b7d3-8208d29746ff",
                             Payment = 0,
                             Price = 13000000.0,
@@ -358,8 +389,8 @@ namespace WebMobilePhone_DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Discount")
-                        .HasColumnType("float");
+                    b.Property<int?>("DiscountID")
+                        .HasColumnType("int");
 
                     b.Property<int>("Hot")
                         .HasColumnType("int");
@@ -388,7 +419,7 @@ namespace WebMobilePhone_DataAccess.Migrations
                             CategoryID = 1,
                             Content = " ",
                             Decription = " ",
-                            Discount = 5.0,
+                            DiscountID = 1,
                             Hot = 1,
                             Name = "Iphone 13 Hồng",
                             Photo = "133237103276543983_IP13Hong.jpg",
@@ -497,15 +528,15 @@ namespace WebMobilePhone_DataAccess.Migrations
                             Id = "08bc2fc1-5387-4033-b7d3-8208d29746ff",
                             AccessFailedCount = 0,
                             Address = "Hà Nội",
-                            ConcurrencyStamp = "0f569885-a456-418c-bf07-e1b5cfe57c76",
+                            ConcurrencyStamp = "f01e9224-9dfa-43c1-bc16-c95c87dcfdfb",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEG8J6gICX9FePnv/OzNrCvumuBQCbdg1IKOb1Nug4HakbGE8JT1Ifs9C2a6MIyak6A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAENoFfcS16mPMCV59VfxMLWnGg3EDCBezvpBLonRWa960SviDcCPpvwlAwqpTc7FFgw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7200423f-1d77-4531-ac52-436b6443dd72",
+                            SecurityStamp = "6ac1a44f-c457-49dc-b83f-04f750f6a2d4",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -514,15 +545,15 @@ namespace WebMobilePhone_DataAccess.Migrations
                             Id = "9fa0160f-c2c6-4124-8221-4f465e979807",
                             AccessFailedCount = 0,
                             Address = "Hà Nam",
-                            ConcurrencyStamp = "4388f120-e92b-4b48-b434-3d74395574ec",
+                            ConcurrencyStamp = "46140aa7-e436-4b95-bf41-28cb10082965",
                             Email = "Admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "BLOGOWNER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAELCgvVckJOBVA4V2gojZg03V40HoXceqSMXWXTlVhLIHLvaHdz9BKcJts7cFqt9ukg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHkj8J3oR60M4wUIS2lnAvVDf1MJ3PYImvA4k95tM8GyNxnJ6VVrbFokLv0twI0ZkQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d76b9404-7369-40ed-8db7-908bcb92af55",
+                            SecurityStamp = "e05fc77a-72c9-4ecd-b60a-a21633fcdd46",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         });

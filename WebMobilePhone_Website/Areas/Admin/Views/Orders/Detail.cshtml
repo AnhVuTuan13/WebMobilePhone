@@ -26,6 +26,25 @@
         Products record = unitOfWork.ProductsRepository.Find(idProduct);
         return record != null ? record : new Products();
     }
+    public double getMoney(Products products)
+        {
+            if (products.DiscountID == null)
+            {
+
+                return Convert.ToDouble((products.Price * 0) / 100);
+            }
+            else
+            {
+                Discount discount = unitOfWork.DiscountRepository.Find(products.DiscountID);
+                if (discount.StartDate <= DateTime.Now && DateTime.Now <= discount.EndDate)
+                {
+                    Convert.ToDouble((products.Price * discount.PercentDiscount) / 100);
+
+                }
+                return Convert.ToDouble((products.Price * 0) / 100);
+
+            }
+        }
 }
 <div class="col-md-12">
     <input onclick="history.back()" type="button" value="Back" />
@@ -83,7 +102,7 @@
                     <tr>
                         <td><img src="~/Upload/Products/@record.Photo" style="width:100px;"/></td>
                         <td>@record.Name</td>
-                        <td>@string.Format("{0:#,#.}",record.Price -(record.Price * record.Discount/100))</td>
+                        <td>@string.Format("{0:#,#.}",record.Price - getMoney(record))</td>
                         <td>@item.Quantity</td>
                     </tr>
                 }

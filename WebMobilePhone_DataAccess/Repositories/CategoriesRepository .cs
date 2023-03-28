@@ -16,6 +16,24 @@ namespace WebMobilePhone_DataAccess.Repositories
         {
         }
 
+        public List<Categories> CategoriesHasProducs()
+        {
+            var result = from c in Context.Set<Categories>()
+                         join p in Context.Set<Products>()
+                         on c.Id equals p.CategoryID
+                         group c by c.Id into k
+                         select new
+                         {
+                             Id = k.First().Id,
+                         };
+            var result2 = from c in Context.Set<Categories>()
+                          join r in result
+                          on c.Id equals r.Id
+                          select c;
+
+            return result2.ToList();
+        }
+
         public Categories GetByName(string name)
         {
             return Context.Set<Categories>().Where(tbl => tbl.Name == name).FirstOrDefault();

@@ -21,7 +21,9 @@ namespace WebMobilePhone_Models.Models
         public int Hot { get; set; }
         public string? Photo { get; set; }
         public double Price { get; set; }
-        public double? Discount { get; set; }
+        
+        public int? DiscountID { get; set; }
+       
         public int Amount { get; set; }
         public virtual ICollection<Rating>? Ratings { get; set; }
     }

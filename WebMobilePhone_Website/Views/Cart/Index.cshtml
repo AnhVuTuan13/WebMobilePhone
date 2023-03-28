@@ -1,0 +1,111 @@
+﻿@{
+    Layout = "/Views/Shared/_LayoutEmty.cshtml";
+}
+@using WebMobilePhone_Models.Models;
+@using WebMobilePhone_Website.Models;
+@inject WebMobilePhone_DataAccess.Infrastructures.IUnitOfWork unitOfWork
+@using Microsoft.AspNetCore.Http;
+@functions {
+
+    public double getMoney(Products products)
+    {
+        if (products.DiscountID == null)
+        {
+
+            return Convert.ToDouble((products.Price * 0) / 100);
+        }
+        else
+        {
+            Discount discount = unitOfWork.DiscountRepository.Find(products.DiscountID);
+            if (discount is not null)
+            {
+                if (discount.StartDate <= DateTime.Now && DateTime.Now <= discount.EndDate)
+                {
+                    return Convert.ToDouble((products.Price * discount.PercentDiscount) / 100);
+
+                }
+            }
+            return Convert.ToDouble((products.Price * 0) / 100);
+
+        }
+    }
+}
+@if (ViewBag._cart != null)
+{
+
+    <div class="template-cart">
+        <form action="/Cart/Update" method="post">
+            <div class="table-responsive">
+                <table class="table table-cart">
+                    <thead>
+                        <tr>
+                            <th class="image">Ảnh sản phẩm</th>
+                            <th class="name">Tên sản phẩm</th>
+                            <th class="price">Giá bán lẻ</th>
+                            <th class="quantity">Số lượng</th>
+                            <th class="price">Thành tiền</th>
+                            <th>Xóa</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag._cart)
+                        {
+                            var Price = item.ProductItem.Price - getMoney(item.ProductItem);
+                            <tr>
+                                <td><img src="~/Upload/Products/@item.ProductItem.Photo" class="img-responsive" /></td>
+                                <td><a href="/Product/Detail/@item.ProductItem.ID">@item.ProductItem.Name</a></td>
+                                <td> @string.Format("{0:#,#.}", Price) </td>
+                                <td><input type="number" id="qty" min="1" class="input-control" value="@item.Quantity" name="product_@item.ProductItem.ID" required="Không thể để trống"></td>
+                                <td><p><b>@string.Format("{0:#,#.}", item.Quantity * Price)₫</b></p></td>
+                                <td><a href="/Cart/Remove/@item.ProductItem.ID" data-id="2479395"><i class="fa fa-trash"></i></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                    @if (ViewBag._total > 0)
+                    {
+
+                        <tfoot>
+                            <tr>
+                                <td colspan="6">
+                                    <a href="/Cart/Destroy" class="button pull-left">Xóa toàn bộ</a> <a href="/Home" class="button pull-right black">Tiếp tục mua hàng</a>
+                                    <input type="submit" class="button pull-right" value="Cập nhật" id="update" onclick="information()">
+                                </td>
+                            </tr>
+                        </tfoot>
+                    }
+                </table>
+            </div>
+        </form>
+        @if (ViewBag._total > 0)
+        {
+            <div class="total-cart">
+                Tổng tiền thanh toán:
+                @string.Format("{0:#,#.}", ViewBag._total) <br>
+                <a href="/Cart/Checkout/1" class="button black" id="offline">Thanh toán</a>
+                <a href="/Cart/PaypanlCheckout/0" class="button black" id="online">Thanh toán Paypal</a>
+            </div>
+
+
+        }
+    </div>
+
+}
+<script src="~/Admin/assest/jquery-3.6.0.min.js"></script>
+<script>
+    function information() {
+        int a = @ViewBag.soluong;
+        if (a < 0) {
+            alert("không đủ hàng");
+        }
+
+    }
+    @*$(document).ready(function () {
+        $('#update').on('click', function () {
+            int a =@ViewBag.soluong;
+            if (a < 0) {
+                alert("sản phẩm k đủ hàng");
+            }
+        })
+    })*@
+</script>
+

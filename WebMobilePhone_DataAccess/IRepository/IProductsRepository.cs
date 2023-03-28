@@ -11,7 +11,9 @@ namespace WebMobilePhone_DataAccess.IRepository
     public interface IProductsRepository : IBaseRepository<Products>
     {
         public List<Products> GetByCategoriesId(int id);
+        public List<Products> GetByDiscountId(int id);
         public List<Products> GetByOrderByDescending();
         public Products GetByName(string name);
+        public List<Products> HotProduct();
     }
 }

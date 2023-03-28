@@ -4,7 +4,6 @@ using WebMobilePhone_DataAccess.Infrastructures;
 using Microsoft.Extensions.Configuration;
 using WebMobilePhone_Models.Models;
 using X.PagedList;
-using WebMobilePhone_DataAccess.Infrastructures;
 using System.Net.Mail;
 using System.Net;
 using DocumentFormat.OpenXml.Office2010.Excel;

@@ -11,5 +11,6 @@ namespace WebMobilePhone_DataAccess.IRepository
     public interface IUserRepository : IBaseRepository<User>
     {
         public List<User> GetByOrderByDescending();
+        public User GetByEmail(string email);
     }
 }

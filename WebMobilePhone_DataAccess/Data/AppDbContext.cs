@@ -19,6 +19,7 @@ namespace WebMobilePhone_DataAccess.Data
            : base(options)
         {
         }
+        public DbSet<Discount> Discounts { get; set; }
         public DbSet<Categories> Categories { get; set; }
         public DbSet<Products> Products { get; set; }
         public DbSet<News>  News{ get; set; }

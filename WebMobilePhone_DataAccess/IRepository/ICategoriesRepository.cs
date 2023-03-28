@@ -14,5 +14,6 @@ namespace WebMobilePhone_DataAccess.IRepository
         public Categories GetByNameAndNotMapId(string name, int id);
         public List<Categories> GetByOrderByDescending();
         public List<Categories> ListSubCategories(int id);
+        public List<Categories> CategoriesHasProducs();
     }
 }

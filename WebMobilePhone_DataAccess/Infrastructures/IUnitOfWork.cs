@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WebMobilePhone_DataAccess.IRepository;
 
 namespace WebMobilePhone_DataAccess.Infrastructures
 {
@@ -17,6 +16,7 @@ namespace WebMobilePhone_DataAccess.Infrastructures
         public IOrderDetailRepository OrderDetailRepository { get; }
         public IUserRoleRepository UserRoleRepository { get; }
         public IUserRepository UserRepository { get; }
+        public IDiscountRepository DiscountRepository { get; }
         int SaveChanges();
     }
 }
