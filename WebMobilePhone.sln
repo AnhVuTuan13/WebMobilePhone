@@ -5,9 +5,9 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMobilePhone_Models", "WebMobilePhone_Models\WebMobilePhone_Models.csproj", "{4F58E30F-5EF3-4268-A882-2A93E71181C1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMobilePhone_Website", "WebMobilePhone_Website\WebMobilePhone_Website.csproj", "{058997E4-3132-4CAC-8DB0-8BB0E2320B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMobilePhone_DataAccess", "WebMobilePhone_DataAccess\WebMobilePhone_DataAccess.csproj", "{B7A329D5-533E-425C-874B-23B07F9774F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebMobilePhone_DataAccess", "WebMobilePhone_DataAccess\WebMobilePhone_DataAccess.csproj", "{B7A329D5-533E-425C-874B-23B07F9774F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebMobilePhone_Website", "WebMobilePhone_Website\WebMobilePhone_Website.csproj", "{4C637222-29F8-45B2-9E7F-5085F269A79C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,14 +19,14 @@ Global
 		{4F58E30F-5EF3-4268-A882-2A93E71181C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F58E30F-5EF3-4268-A882-2A93E71181C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F58E30F-5EF3-4268-A882-2A93E71181C1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{058997E4-3132-4CAC-8DB0-8BB0E2320B1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{058997E4-3132-4CAC-8DB0-8BB0E2320B1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{058997E4-3132-4CAC-8DB0-8BB0E2320B1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{058997E4-3132-4CAC-8DB0-8BB0E2320B1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7A329D5-533E-425C-874B-23B07F9774F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7A329D5-533E-425C-874B-23B07F9774F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7A329D5-533E-425C-874B-23B07F9774F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7A329D5-533E-425C-874B-23B07F9774F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C637222-29F8-45B2-9E7F-5085F269A79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C637222-29F8-45B2-9E7F-5085F269A79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C637222-29F8-45B2-9E7F-5085F269A79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C637222-29F8-45B2-9E7F-5085F269A79C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

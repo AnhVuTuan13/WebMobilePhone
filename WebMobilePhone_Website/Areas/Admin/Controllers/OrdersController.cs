@@ -88,7 +88,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
             //    content = content.Replace("{{Address}}", customer.Address);
             //    content = content.Replace("{{Total}}", record.Price.ToString());
 
-            //    SendEmail(customer.Email, "Đơn hàng từ THMobile", content);
+            //    SendEmail(customer.Email, "Đơn hàng từ VTMobile", content);
 
 
             return RedirectToAction("Index", "Orders");

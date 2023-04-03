@@ -79,7 +79,7 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
             }
             else
             {
-                foreach(Products product in listProduct)
+                foreach (Products product in listProduct)
                 {
                     product.DiscountID = null;
                 }
@@ -89,6 +89,23 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
                 unitOfWork.SaveChanges();
             }
             return RedirectToAction("Index");
+        }
+        public IActionResult SetUpDiscount()
+        {
+            List<Products> listProduct = (List<Products>)unitOfWork.ProductsRepository.GetAll();
+            return View(listProduct);
+        }
+        [HttpPost]
+        public IActionResult ChangeDiscount(string discountID,  string[] products)
+        {
+            var discount = int.Parse(discountID);
+            foreach(var it in products)
+            {
+                Products product = unitOfWork.ProductsRepository.Find(int.Parse(it));
+                product.DiscountID = discount;
+            }
+            unitOfWork.SaveChanges();
+            return Json(new { success = true });
         }
     }
 }

@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "/Views/Shared/_LayoutEmty.cshtml";
+}
+@using WebMobilePhone_Models.Models;
+@using WebMobilePhone_Website.Models;
+@inject WebMobilePhone_DataAccess.Infrastructures.IUnitOfWork unitOfWork;
+@functions {
+
+    public string GetCategory(int categoryID)
+    {
+        Categories record = unitOfWork.CategoryRepository.Find(categoryID);
+        return record.Name != null ? record.Name : "";
+    }
+    //lấy só sao
+    public int GetStar(int productID, int intStar)
+    {
+        return unitOfWork.RatingRepository.GetStar(productID, intStar);
+    }
+    public double getMoney(Products products)
+    {
+        if (products.DiscountID == null)
+        {
+
+            return Convert.ToDouble((products.Price * 0) / 100);
+        }
+        else
+        {
+            Discount discount = unitOfWork.DiscountRepository.Find(products.DiscountID);
+            if (discount is not null)
+            {
+                if (discount.StartDate <= DateTime.Now && DateTime.Now <= discount.EndDate)
+                {
+                    return Convert.ToDouble((products.Price * discount.PercentDiscount) / 100);
+
+                }
+            }
+            return Convert.ToDouble((products.Price * 0) / 100);
+
+        }
+    }
+}
+
+<div class="top">
+    <div class="row">
+        <div class="col-xs-12 col-md-6 product-image">
+            <div class="featured-image">
+                <img src="~/Upload/Products/@Model.Photo" style="width: 100%;" class="img-responsive" />
+            </div>
+
+        </div>
+        <div class="col-xs-12 col-md-6 info">
+            <h1 itemprop="name">@Model.Name</h1>
+            <p class="vendor"> Category:&nbsp; <span>@GetCategory(Model.CategoryID)</span></p>
+            <p itemprop="price" class="price-box product-price-box" style="color:red ; font-size: 15px;"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;">@string.Format("{0:#,#.}", @Model.Price ) </span>VND</span></p>
+            <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> @string.Format("{0:#,#.}", Model.Price - getMoney(Model))  </span>VND</span></p>
+            </p>
+            <p>Số sản phẩm còn: <span>@Model.Amount</span></p>
+            @if (@Model.Amount <= 0)
+            {
+                <input href="/Cart/Buy/@Model.ID" disable class="btn btn-primary" value="Cho vào giỏ hàng" disabled>
+            }
+            else
+            {
+                <a href="/Cart/Buy/@Model.ID" class="btn btn-primary">Cho vào giỏ hàng</a>
+            }
+
+            <!-- rating -->
+            <div style="border:1px solid #dddddd; margin-top: 15px;">
+                <h4 style="padding-left: 10px;">Rating</h4>
+                <table style="width: 100%;">
+                    <tr>
+                        <td style="width: 80%; padding-left: 10px;"><img src="~/Frontend/images/star.jpg"></td>
+                        <td><span class="label label-primary">@GetStar(Model.ID,1) vote</span></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80%; padding-left: 10px;"><img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"></td>
+                        <td><span class="label label-warning">@GetStar(Model.ID, 2) vote</span></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80%; padding-left: 10px;"><img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"></td>
+                        <td><span class="label label-danger">@GetStar(Model.ID, 3) vote</span></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80%; padding-left: 10px;"><img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"></td>
+                        <td><span class="label label-info">@GetStar(Model.ID, 4) vote</span></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 80%; padding-left: 10px;"><img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"> <img src="~/Frontend/images/star.jpg"></td>
+                        <td><span class="label label-success">@GetStar(Model.ID, 5) vote</span></td>
+                    </tr>
+                </table>
+                <br>
+            </div>
+            <!-- /rating -->
+        </div>
+    </div>
+</div>
+<div class="middle">
+    <!-- chi tiet -->
+    @Html.Raw(Model.Decription)
+    @Html.Raw(Model.Content)
+    <!-- chi tiet -->
+</div>

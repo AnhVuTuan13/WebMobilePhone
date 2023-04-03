@@ -1,0 +1,170 @@
+﻿@model List< WebMobilePhone_Models.Models.Products>
+@using Microsoft.AspNetCore.Http;
+@using WebMobilePhone_Models.Models;
+@using WebMobilePhone_DataAccess.Data;
+@{
+    ViewBag.Title = "Discount";
+    Layout = "~/Areas/Admin/Views/Share/_Layout.cshtml";
+}
+
+@section header{
+    <p style="margin-top: -10px;">Giảm Giá </p>
+}
+@using WebMobilePhone_Models.Models;
+@using Microsoft.AspNetCore.Http;
+@inject WebMobilePhone_DataAccess.Infrastructures.IUnitOfWork unitOfWork
+
+@functions{
+
+    public List<Discount> Discounts()
+    {
+        List<Discount> list = (List<Discount>)unitOfWork.DiscountRepository.GetAll();
+        return list.Count > 0 ? list : new List<Discount>();
+    }
+     public double getDiscount(Products products)
+    {
+
+        if (products.DiscountID == null)
+        {
+            return 0;
+        }
+        else
+        {
+            Discount discount = unitOfWork.DiscountRepository.Find(products.DiscountID);
+            if (discount is not null)
+            {
+                if (discount.StartDate <= DateTime.Now && DateTime.Now <= discount.EndDate)
+                {
+                    return discount.PercentDiscount;
+
+                }
+            }
+            return 0;
+
+        }
+    }
+}
+
+<div class="row">
+    <div class="col-xs-12">
+         <div class="box">
+            <div class="box-header"  style="display:flex; align-content:center;width:100%">
+                <div class="h-auto" style="width:70% ; display:flex;">
+                     <select class="form-control" id="DiscountID"  style="width:70%; " name="DiscountID">
+                            @{
+                                List<Discount> discounts = Discounts();
+                            }
+                            @foreach (var item in discounts)
+                            {
+                                <option  value="@item.Id" >Discount: @item.PercentDiscount % - @item.StartDate.ToString("dd/MM/yyyy") : @item.EndDate.ToString("dd/MM/yyyy")  </option>
+                            }
+                        </select>
+                        
+                        <a onclick="AddDiscount()" class="btn btn-success" style="margin-left:2px; width:auto">
+                             Thêm giảm giá 
+                         </a>
+                    
+                </div>
+                <div id="timkiem" style=" width:30%; float: right; margin-top:0px; margin-right: 0px;">
+                    <p id="tk" style=" float: left; margin: 4px;">Tìm Kiếm:</p>
+                    <input type="text" id="search" />
+                </div>
+            </div>
+            <div class="box-body">
+                <table id="ProductTable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                           <th width="15px"><input type="checkbox" class="form-check-input" id="Check-All"/></th>
+                            <th width="160px">Ảnh</th>
+                            <th>Tên máy</th>
+                            <th>Giá</th>
+                            <th>Giảm giá</th>
+                        </tr>
+                    </thead>
+                    @if (Model.Count > 0)
+                    {
+                        <tbody id="data">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                     <td>
+                                        <input type="checkbox" class="form-check-input Product-Item" value="@item.ID"/>
+                                    </td>
+                                    <td>
+                                        @if (item.Photo != null && File.Exists(Directory.GetCurrentDirectory() + "\\wwwroot\\Upload\\Products\\" + item.Photo))
+                                        {
+                                            <img src="~/Upload/Products/@item.Photo" style="width:100px;" />
+                                        }
+                                    </td>
+                                    <td>@item.Name</td>
+                                    <td>@item.Price</td>
+                                    <td>@getDiscount(item) %</td>
+                                </tr>
+                            }
+                        </tbody>
+                    }
+                </table>
+                <style type="text/css">
+                    .pagination {
+                        padding: 0px;
+                        margin: 0px;
+                    }
+                </style>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Admin/assest/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#search').on('keyup', function (event) {
+            event.preventDefault();
+            /* Act on the event */
+            var tukhoa = $(this).val().toLowerCase();
+            $('#data tr').filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf(tukhoa) > -1);
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+
+    var checkAll = document.getElementById('Check-All');
+    var checkboxes = document.getElementsByClassName('Product-Item');
+
+    checkAll.addEventListener('change', function() {
+        for (var i = 0; i < checkboxes.length; i++) {
+            checkboxes[i].checked = this.checked;
+        }
+    });   
+    
+    function AddDiscount(){
+        var checkedValues = [];
+            $('.Product-Item:checked').each(function() {
+                checkedValues.push($(this).val());
+            });
+        if(checkedValues.length !=0){
+            var formData = {
+              discountID: $("#DiscountID").val(),
+              products: checkedValues
+            };
+            $.ajax({
+              url: '/Admin/Discount/ChangeDiscount',
+              method: 'POST',
+              data: formData,
+              success: function(data) {
+                if(data.success){
+                    alert("Add thành công!");
+                    location.reload();
+                }
+              },
+              error: function() {
+                // Handle error
+              }
+          });
+        }
+        else{
+            alert("Chưa chọn sản phẩm nào !");
+        }
+    }
+</script>

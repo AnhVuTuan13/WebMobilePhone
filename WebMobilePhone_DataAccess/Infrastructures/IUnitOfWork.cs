@@ -17,6 +17,7 @@ namespace WebMobilePhone_DataAccess.Infrastructures
         public IUserRoleRepository UserRoleRepository { get; }
         public IUserRepository UserRepository { get; }
         public IDiscountRepository DiscountRepository { get; }
+        public IRatingRepository RatingRepository { get; }
         int SaveChanges();
     }
 }

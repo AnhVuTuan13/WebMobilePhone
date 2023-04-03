@@ -124,6 +124,18 @@ namespace WebMobilePhone_DataAccess.Infrastructures
                 return _discountRepositorys;
             }
         }
+        private IRatingRepository _ratingRepository;
+        public IRatingRepository RatingRepository
+        {
+            get
+            {
+                if (_ratingRepository == null)
+                {
+                    _ratingRepository = new RatingRepository(_context);
+                }
+                return _ratingRepository;
+            }
+        }
         public AppDbContext AppDbContext => _context;
 
         public void Dispose()
