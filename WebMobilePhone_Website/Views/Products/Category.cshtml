@@ -70,8 +70,8 @@
                             <div class="image" style="width:100%; height:160px"> <a href="#"><img src="~/Upload/Products/@itemProduct.Photo" width="160px" title="@itemProduct.Name" alt="@itemProduct.Name" class="img-responsive"></a> </div>
                         <div class="info">
                             <h3 class="name"><a href="/Products/Detail/@itemProduct.ID">@itemProduct.Name </a></h3>
-                            <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;color:red;"> @itemProduct.Price</span> ₫ </span> </p>
-                            <p class="price-box"> <span class="special-price"> <span class="price product-price">@string.Format("{0}", itemProduct.Price - getMoney(itemProduct)) </span>₫ </span> </p>
+                            <p class="price-box"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;color:red;"> @string.Format("{0:#,#.}",@itemProduct.Price)</span> ₫ </span> </p>
+                                <p class="price-box"> <span class="special-price"> <span class="price product-price">@string.Format("{0:#,#.}", itemProduct.Price - getMoney(itemProduct)) </span>₫ </span> </p>
                             <p class="price-box"> 
                             <a href="/Products/Star/@itemProduct.ID?star=1"><img src="~/Frontend/images/star.jpg"></a> 
                             <a href="/Products/Star/@itemProduct.ID?star=2"><img src="~/Frontend/images/star.jpg"></a> 

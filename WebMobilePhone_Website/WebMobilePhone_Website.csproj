@@ -45,4 +45,9 @@
     <Folder Include="wwwroot\Upload\Products\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Views\Search\SearchPrice.cshtml" />
+    <None Include="Views\Search\SearchProducts.cshtml" />
+  </ItemGroup>
+
 </Project>
