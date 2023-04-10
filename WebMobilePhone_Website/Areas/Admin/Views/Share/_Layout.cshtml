@@ -1,5 +1,6 @@
 ﻿@using WebMobilePhone_Models.Models;
 @using System.IO;
+@using WebMobilePhone_Models.Common;
 @using Microsoft.AspNetCore.Http;
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,7 @@
                 <!-- Sidebar user panel -->
                 <div class="user-panel">
                     <div class="pull-left image">
-
+                        
                         <img src="~/Admin/images/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                     </div>
@@ -64,63 +65,82 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">LAOYOUT ADMIN</li>
 
+                    @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin))
+                    {
+                        <li>
+                            <a href="/Admin/Categories">
+                                <i class="fa fa-th"></i> <span>Danh mục Sản phẩm</span>
+                            </a>
+                        </li>
+                    }
 
+
+
+
+                    @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin))
+                    {
+                        <li>
+                            <a href="/Admin/Products">
+                                <i class="fa fa-th"></i> <span>Danh sách Sản phẩm</span>
+                            </a>
+                        </li>
+
+                    }
+                    @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin))
+                    {
+                        <li>
+                            <a href="/Admin/Orders">
+                                <i class="fa fa-th"></i> <span>Đơn Hàng</span>
+                            </a>
+                        </li>
+                    }
+                    @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin))
+                    {
+                        <li>
+                            <a href="/Admin/Discount">
+                                <i class="fa fa-code"></i> <span>Quản lý giảm giá</span>
+
+                            </a>
+                        </li>
+                    }
+                    @if (User.IsInRole(Roles.Admin))
+                    {
+                        <li>
+                            <a href="/Admin/User">
+                                <i class="fa fa-code"></i> <span>Quản lý user</span>
+
+                            </a>
+                        </li>
+                    }
+                    @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin))
+                    {
+
+                        <li>
+                            <a href="/Admin/Report">
+                                <i class="fa fa-code"></i> <span>Báo cáo</span>
+
+                            </a>
+                        </li>
+                    }
+
+                    @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin))
+                    {
+                        <li>
+                            <a href="/Admin/News">
+                                <i class="fa fa-code"></i> <span>Tin tức</span>
+
+                            </a>
+                        </li>
+                    }
                     <li>
-                        <a href="/Admin/Categories">
-                            <i class="fa fa-th"></i> <span>Danh mục Sản phẩm</span>
-                        </a>
-                    </li>
-
-
-
-                    <li>
-                        <a href="/Admin/Products">
-                            <i class="fa fa-th"></i> <span>Danh sách Sản phẩm</span>
-                        </a>
-                    </li>
-
-
-
-                    <li>
-                        <a href="/Admin/Orders">
-                            <i class="fa fa-th"></i> <span>Đơn Hàng</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Admin/Discount">
-                            <i class="fa fa-code"></i> <span>Quản lý giảm giá</span>
-
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Admin/User">
-                            <i class="fa fa-code"></i> <span>Quản lý user</span>
-
-                        </a>
-                    </li>
-
-
-                    <li>
-                        <a href="/Admin/Report">
-                            <i class="fa fa-code"></i> <span>Báo cáo</span>
-
-                        </a>
-                    </li>
-
-
-
-                    <li>
-                        <a href="/Admin/News">
-                            <i class="fa fa-code"></i> <span>Tin tức</span>
-
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/Admin/Login/Logout">
+                        <form hidden class="form-inline" id="myform" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                        </form>
+                        <a href="#" onclick="document.getElementById('myform').submit()"><i class="fa fa-code"></i> <span>Đăng Xuất</span></a>
+                        @*<a href="/Admin/Login/Logout">
                             <i class="fa fa-code"></i> <span>Đăng Xuất</span>
 
-                        </a>
+                        </a>*@
+                       @* <partial name="_LoginAdminPartial" />*@
                     </li>
                 </ul>
             </section>

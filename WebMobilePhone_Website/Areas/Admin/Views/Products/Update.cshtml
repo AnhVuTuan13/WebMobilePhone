@@ -59,23 +59,28 @@
                 
                 <!-- end rows -->
                 <!-- rows -->
+                @{
+                    List<Categories> listCategories = ListCategories();
+                }
                 <div class="row" style="margin-top:5px;">
                     <div class="col-md-2">Category</div>
                     <div class="col-md-10">
-                        <select class="form-control" style="width:200px;" name="CategoryID">
+                        <select asp-items="@(new SelectList(listCategories, "Id", "Name"))" asp-for="CategoryID"></select>
+                       @* <select class="form-control" style="width:200px;" name="CategoryID">
                             @{
                                 List<Categories> listCategories = ListCategories();
                             }
+                            <select asp-items="@(new SelectList(listCategories))" asp-for="User.Country"></select>
                             @foreach (var item in listCategories)
                             {
-                                <option @if (Model != null && Model.CategoryID == item.Id) { <text> selected</text> } value="@item.Id">@item.Name</option>
-                                @*List<CategoriesRecord> listSubCategories = ListSubCategories(item.Id);
-                                    foreach (var itemSub in listSubCategories)
-                                    {
-                                        <option @if (Model != null && Model.CategoryID == itemSub.Id) { <text> selected</text> } value="@itemSub.Id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@itemSub.Name</option>
-                                    }*@
+                               // <option @if (Model != null && Model.CategoryID == item.Id) { <text> selected</text> } value="@item.Id">@item.Name</option>
+                               // List<CategoriesRecord> listSubCategories = ListSubCategories(item.Id);
+                                //    foreach (var itemSub in listSubCategories)
+                               //     {
+                               //         <option @if (Model != null && Model.CategoryID == itemSub.Id) { <text> selected</text> } value="@itemSub.Id">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@itemSub.Name</option>
+                                 //   }
                             }
-                        </select>
+                        </select>*@
                     </div>
                 </div>
                 <!-- end rows -->

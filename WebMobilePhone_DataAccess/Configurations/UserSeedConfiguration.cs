@@ -33,8 +33,19 @@ namespace WebMobilePhone_DataAccess.Configurations
                     Id = "9fa0160f-c2c6-4124-8221-4f465e979807",
                     Email = "Admin@localhost.com",
                     NormalizedEmail = "ADMIN@LOCALHOST.COM",
-                    NormalizedUserName = "BLOGOWNER@LOCALHOST.COM",
+                    NormalizedUserName = "ADMIN@LOCALHOST.COM",
                     UserName = "admin@localhost.com",
+                    PasswordHash = hasher.HashPassword(null, "P@ssword1"),
+                    EmailConfirmed = true,
+                    Address = "Hà Nam"
+                },
+                new User
+                {
+                    Id = "3fa0160f-c2c6-4124-8221-4f465e979807",
+                    Email = "Master@localhost.com",
+                    NormalizedEmail = "MASTER@LOCALHOST.COM",
+                    NormalizedUserName = "MASTER@LOCALHOST.COM",
+                    UserName = "master@localhost.com",
                     PasswordHash = hasher.HashPassword(null, "P@ssword1"),
                     EmailConfirmed = true,
                     Address = "Hà Nam"

@@ -403,6 +403,7 @@ namespace WebMobilePhone_Website.Controllers
             }
             return Json(_cart, new Newtonsoft.Json.JsonSerializerSettings());
         }
+
         public JsonResult UpdateAmount()
         {
             List<Items> _cart = cart.GetCart(HttpContext.Session);

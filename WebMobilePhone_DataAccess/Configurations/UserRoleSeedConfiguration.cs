@@ -23,7 +23,12 @@ namespace WebMobilePhone_DataAccess.Configurations
                {
                    UserId = "08bc2fc1-5387-4033-b7d3-8208d29746ff",
                    RoleId = "97ddd633-2a4d-42b3-8f82-a5fe1d94173a"
-               }
+               },
+                new IdentityUserRole<string>
+                {
+                    UserId = "3fa0160f-c2c6-4124-8221-4f465e979807",
+                    RoleId = "58cd381e-8683-4b42-b7b6-70b6274bfa84"
+                }
             );
         }
     }
