@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebMobilePhone_DataAccess.Data;
 using WebMobilePhone_DataAccess.Infrastructures;
+using WebMobilePhone_Models.Common;
 using WebMobilePhone_Models.Models;
 
 namespace WebMobilePhone_Website.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.Master + "," + Roles.Admin)]
     public class DiscountController : Controller
     {
         public readonly IUnitOfWork unitOfWork;

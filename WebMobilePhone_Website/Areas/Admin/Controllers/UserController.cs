@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebMobilePhone_DataAccess.Infrastructures;
+using WebMobilePhone_Models.Common;
 using WebMobilePhone_Models.Models;
 using X.PagedList;
 using BC = BCrypt.Net.BCrypt;
 namespace WebMobilePhone_Website.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.Admin)]
     public class UserController : Controller
     {
         public readonly IUnitOfWork unitOfWork;

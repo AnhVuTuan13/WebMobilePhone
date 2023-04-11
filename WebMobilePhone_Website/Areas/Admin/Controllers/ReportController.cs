@@ -3,10 +3,13 @@ using System.Data;
 using System.Linq;
 using WebMobilePhone_DataAccess.Infrastructures;
 using ClosedXML.Excel;
+using Microsoft.AspNetCore.Authorization;
+using WebMobilePhone_Models.Common;
 
 namespace WebMobilePhone_Website.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.Master + "," + Roles.Admin)]
     public class ReportController : Controller
     {
         public readonly IUnitOfWork unitOfWork;

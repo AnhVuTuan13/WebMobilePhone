@@ -7,10 +7,13 @@ using X.PagedList;
 using System.Net.Mail;
 using System.Net;
 using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Authorization;
+using WebMobilePhone_Models.Common;
 
 namespace WebMobilePhone_Website.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = Roles.Master + "," + Roles.Admin)]
     public class OrdersController : Controller
     {
         public readonly IUnitOfWork unitOfWork;
