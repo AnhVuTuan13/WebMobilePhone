@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "/Views/Shared/_LayoutEmty.cshtml";
+}
+@using WebMobilePhone_Models.Models;
+@functions{
+}
+
+<!-- main -->
+<div class="middle">
+
+    <h3>@Model.Name</h3>
+    <img src="~/Upload/News/@Model.Photo" style="width:100%;" />
+    <p>@Html.Raw(Model.Description)</p>
+    <p>@Html.Raw(Model.Content)</p>
+
+    <div class="fb-comments" data-href="http://devpro.edu.vn" data-width="" data-numposts="5"></div>
+</div>
+<!-- end main -->

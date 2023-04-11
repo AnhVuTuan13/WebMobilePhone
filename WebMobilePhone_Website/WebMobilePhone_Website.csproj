@@ -46,6 +46,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\News\Detail.cshtml" />
+    <None Include="Views\News\Index.cshtml" />
     <None Include="Views\Search\SearchPrice.cshtml" />
     <None Include="Views\Search\SearchProducts.cshtml" />
   </ItemGroup>

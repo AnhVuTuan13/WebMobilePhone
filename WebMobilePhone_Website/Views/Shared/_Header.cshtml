@@ -1,4 +1,5 @@
 ﻿@using WebMobilePhone_Models.Models;
+@using WebMobilePhone_Models.Common;
 @* sử dụng session thì phải dùng dòng sau *@
 @using Microsoft.AspNetCore.Http
 @inject WebMobilePhone_DataAccess.Infrastructures.IUnitOfWork unitOfWork;
@@ -203,8 +204,11 @@
                         </li>
                         <li><a href="/Cart">Giỏ hàng</a></li>
                         <li><a href="/News">Tin tức</a></li>
-
-                        @if (Context.Session.GetString("email") != null)
+                        @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin))
+                        {
+                            <li><a asp-area="Admin" asp-page="/Home/Index" >Admin</a></li>
+                        }
+                        @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.User))
                         {
                             <li><a href="/Cart/DetailBill">Đơn hàng</a></li>
                             <li><a href="/Cart/HistoryBill">Lịch sử</a></li>
