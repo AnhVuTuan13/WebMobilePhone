@@ -101,7 +101,7 @@
                             <td>@record.Name</td>
                             <td><img src="~/Upload/Products/@record.Photo" style="width:100px;" /></td>
 
-                            <td>@string.Format("{0:#,#.}", record.Price - getMoney(record))</td>
+                            <td>@string.Format("{0:#,#.}", (record.Price - getMoney(record))*item.Quantity)</td>
 
                             <td>@item.Quantity</td>
 

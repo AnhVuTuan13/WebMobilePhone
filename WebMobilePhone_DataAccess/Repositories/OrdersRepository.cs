@@ -36,6 +36,24 @@ namespace WebMobilePhone_DataAccess.Repositories
 
         public DataTable DataTableSelectTop1ASC(DateTime fromDate, DateTime toDate)
         {
+            /* var result = (from o in Context.Set<Orders>().AsEnumerable()
+                           join od in Context.Set<OrderDetail>().AsEnumerable()
+                           on o.ID equals od.OrderID
+                           join pd in Context.Set<Products>().AsEnumerable()
+                           on od.ProductID equals pd.ID
+                           join ds in Context.Set<Discount>().AsEnumerable()
+                           on pd.DiscountID equals ds.Id
+                           where o.Create >= fromDate && o.Create <= toDate
+                           group new { od, pd, ds } by new { od.ProductID, pd.Name, pd.Price, ds.PercentDiscount,o.Create } into grp
+                           select new
+                           {
+                               Name = grp.First().pd.Name,
+                               Price = grp.First().pd.Price,
+                               Discount = grp.First().ds.PercentDiscount,
+                               soluongban = grp.Sum(k => k.od.Quantity)
+                           }).OrderBy(x => x.soluongban).Take(1);*/
+
+
             var result = (from o in Context.Set<Orders>().AsEnumerable()
                           join od in Context.Set<OrderDetail>().AsEnumerable()
                           on o.ID equals od.OrderID
@@ -50,8 +68,10 @@ namespace WebMobilePhone_DataAccess.Repositories
                               Name = grp.First().pd.Name,
                               Price = grp.First().pd.Price,
                               Discount = grp.First().ds.PercentDiscount,
-                              soluongban = grp.Sum(k => k.od.Quantity)
-                          }).OrderBy(x => x.soluongban).Take(1);
+                              soluongban = grp.Sum(k => k.od.Quantity),
+                              Total = grp.Sum(k => k.od.Quantity) * grp.First().pd.Price
+                          }).OrderByDescending(x => x.Total);
+
             return result.LINQResultToDataTable();
         }
 
@@ -65,7 +85,7 @@ namespace WebMobilePhone_DataAccess.Repositories
                           join ds in Context.Set<Discount>().AsEnumerable()
                           on pd.DiscountID equals ds.Id
                           where o.Create >= fromDate && o.Create <= toDate
-                          group new { od, pd, ds } by new { od.ProductID, pd.Name, pd.Price, ds.PercentDiscount } into grp
+                          group new { od, pd, ds } by new { od.ProductID, pd.Name, pd.Price, ds.PercentDiscount, o.Create } into grp
                           select new
                           {
                               Name = grp.First().pd.Name,
@@ -73,6 +93,8 @@ namespace WebMobilePhone_DataAccess.Repositories
                               Discount = grp.First().ds.PercentDiscount,
                               soluongban = grp.Sum(k => k.od.Quantity)
                           }).OrderByDescending(x => x.soluongban).Take(2);
+
+           
 
             return result.LINQResultToDataTable();
         }

@@ -206,9 +206,9 @@
                         <li><a href="/News">Tin tức</a></li>
                         @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin))
                         {
-                            <li><a asp-area="Admin" asp-page="/Home/Index" >Admin</a></li>
+                            <li><a href="/Admin/Home">Admin</a></li>
                         }
-                        @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.User))
+                        @if (User.IsInRole(Roles.Master) || User.IsInRole(Roles.Admin) || User.IsInRole(Roles.User) )
                         {
                             <li><a href="/Cart/DetailBill">Đơn hàng</a></li>
                             <li><a href="/Cart/HistoryBill">Lịch sử</a></li>

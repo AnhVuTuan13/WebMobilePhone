@@ -84,63 +84,68 @@ namespace WebMobilePhone_Website.Areas.Admin.Controllers
             int iCount3 = 1;
 
             //tao data
-            DataTable dt = new DataTable(); 
-            DataTable dt2 = new DataTable(); 
-            DataTable dt3 = new DataTable();
+           /* DataTable dt = new DataTable(); 
+            DataTable dt2 = new DataTable(); */
+            DataTable dt = new DataTable();
 
-            dt = unitOfWork.OrdersRepository.DataTableCreatePrice(fromDate, toDate);
-            dt2 = unitOfWork.OrdersRepository.DataTableSelectTop2(fromDate, toDate);
-            dt3 = unitOfWork.OrdersRepository.DataTableSelectTop1ASC(fromDate, toDate);
+           /* dt = unitOfWork.OrdersRepository.DataTableCreatePrice(fromDate, toDate);
+            dt2 = unitOfWork.OrdersRepository.DataTableSelectTop2(fromDate, toDate);*/
+            dt = unitOfWork.OrdersRepository.DataTableSelectTop1ASC(fromDate, toDate);
             //doanh số
 
             //top san phẩm bán chạy
 
             //top san phẩm bán được ít nhất 
 
-            ws.Cell("D4").Value = "Từ ngày " + fromDate.ToString("dd/MM/yyyy") + " đến ngày " + toDate.ToString("dd/MM/yyyy");
+            ws.Cell("C4").Value = "Từ ngày " + fromDate.ToString("dd/MM/yyyy") + " đến ngày " + toDate.ToString("dd/MM/yyyy");
             if (dt is not null)
             {
                 
                 foreach (DataRow item in dt.Rows)
                 {
                     ws.Cell("A" + (startRow + iCount)).Value = iCount;
-                    ws.Cell("B" + (startRow + iCount)).Value = (XLCellValue)item["Create"].ToString();
-                    ws.Cell("C" + (startRow + iCount)).Value = (XLCellValue)item["Price"].ToString();
+                    ws.Cell("B" + (startRow + iCount)).Value = (XLCellValue)item["Total"].ToString();
+                    ws.Cell("C" + (startRow + iCount)).Value = (XLCellValue)item["Name"].ToString();
+                    ws.Cell("D" + (startRow + iCount)).Value = (XLCellValue)item["Price"].ToString();
+                    ws.Cell("E" + (startRow + iCount)).Value = (XLCellValue)item["Discount"].ToString();
+                    ws.Cell("F" + (startRow + iCount)).Value = (XLCellValue)item["soluongban"].ToString();
                     if (iCount < dt.Rows.Count)
                     {
                         ws.Row(startRow + iCount).InsertRowsBelow(1);
                         iCount++;
                     }
                 }
-               
-               
-                foreach (DataRow item in dt2.Rows)
-                {
-                    ws.Cell("D" + (startRow + iCount2)).Value = (XLCellValue)item["Name"].ToString();
-                    ws.Cell("E" + (startRow + iCount2)).Value = (XLCellValue)item["Price"].ToString(); ;
-                    ws.Cell("F" + (startRow + iCount2)).Value = (XLCellValue)item["Discount"].ToString(); ;
-                    ws.Cell("G" + (startRow + iCount2)).Value = (XLCellValue)item["soluongban"].ToString(); ;
-                    if (iCount2 < dt2.Rows.Count)
-                    {
-                        ws.Row(startRow + iCount2).InsertRowsBelow(1);
-                        iCount2++;
-                    }
-                }
-                
-                
-                foreach (DataRow item in dt3.Rows)
-                {
-                    ws.Cell("H" + (startRow + iCount3)).Value = (XLCellValue)item["Name"].ToString(); ;
-                    ws.Cell("I" + (startRow + iCount3)).Value = (XLCellValue)item["Price"].ToString(); 
-                    ws.Cell("J" + (startRow + iCount3)).Value = (XLCellValue)item["Discount"].ToString(); ;
-                    ws.Cell("K" + (startRow + iCount3)).Value = (XLCellValue)item["soluongban"].ToString(); ;
-                    if (iCount3 < dt3.Rows.Count)
-                    {
-                        ws.Row(startRow + iCount3).InsertRowsBelow(1);
-                        iCount3++;
-                    }
-                }
-                dt3.Clear();
+                int k = 8 + dt.Rows.Count;
+                ws.Cell("E" + k ).Value = "Hà Nội, ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+
+
+                /*  foreach (DataRow item in dt2.Rows)
+                  {
+                      ws.Cell("D" + (startRow + iCount2)).Value = (XLCellValue)item["Name"].ToString();
+                      ws.Cell("E" + (startRow + iCount2)).Value = (XLCellValue)item["Price"].ToString(); ;
+                      ws.Cell("F" + (startRow + iCount2)).Value = (XLCellValue)item["Discount"].ToString(); ;
+                      ws.Cell("G" + (startRow + iCount2)).Value = (XLCellValue)item["soluongban"].ToString(); ;
+                      if (iCount2 < dt2.Rows.Count)
+                      {
+                          ws.Row(startRow + iCount2).InsertRowsBelow(1);
+                          iCount2++;
+                      }
+                  }
+
+
+                  foreach (DataRow item in dt3.Rows)
+                  {
+                      ws.Cell("H" + (startRow + iCount3)).Value = (XLCellValue)item["Name"].ToString(); ;
+                      ws.Cell("I" + (startRow + iCount3)).Value = (XLCellValue)item["Price"].ToString(); 
+                      ws.Cell("J" + (startRow + iCount3)).Value = (XLCellValue)item["Discount"].ToString(); ;
+                      ws.Cell("K" + (startRow + iCount3)).Value = (XLCellValue)item["soluongban"].ToString(); ;
+                      if (iCount3 < dt3.Rows.Count)
+                      {
+                          ws.Row(startRow + iCount3).InsertRowsBelow(1);
+                          iCount3++;
+                      }
+                  }
+                  dt3.Clear();*/
                 using (MemoryStream stream = new MemoryStream())
                 {
                     wb.SaveAs(stream);

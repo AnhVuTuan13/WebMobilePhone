@@ -14,6 +14,7 @@ using BraintreeHttp;
 using Microsoft.AspNetCore.Authorization;
 using WebMobilePhone_Models.Common;
 using Microsoft.Build.Evaluation;
+using Microsoft.AspNetCore.Identity;
 
 namespace WebMobilePhone_Website.Controllers
 {
@@ -23,13 +24,18 @@ namespace WebMobilePhone_Website.Controllers
         public readonly IUnitOfWork unitOfWork;
         private readonly string _clientId;
         private readonly string _secretkey;
+        private SignInManager<User> SignInManager;
+        private UserManager<User> UserManager;
         private Cart cart;
-        public CartController(IUnitOfWork unitOfWork, IConfiguration config, Cart cart)
+        public CartController(IUnitOfWork unitOfWork, IConfiguration config, Cart cart, UserManager<User> userManager, SignInManager<User> signInManager)
         {
             this.unitOfWork = unitOfWork;
             this.cart = cart;
             _clientId = config["PayPalSetting:ClientID"];
             _secretkey = config["PayPalSetting:SecretKey"];
+            UserManager = userManager;
+            UserManager = userManager;
+            SignInManager = signInManager;
         }
 
         public double getMoney(Products products)
@@ -119,7 +125,8 @@ namespace WebMobilePhone_Website.Controllers
 
             List<Items> _cart = cart.GetCart(HttpContext.Session);
             //lấy id của customer
-            string customer_id = HttpContext.Session.GetString("customer_id");
+          //  string customer_id = HttpContext.Session.GetString("customer_id");
+            var customer_id = UserManager.GetUserId(HttpContext.User).ToString();
             ViewBag.idkh = customer_id;
             //insert vào bảng order
             Orders recordOrder = new Orders();
@@ -141,9 +148,9 @@ namespace WebMobilePhone_Website.Controllers
                 recordOrderDetail.Price = double.Parse((item.ProductItem.Price - getMoney(item.ProductItem)).ToString());
                 recordOrderDetail.Quantity = item.Quantity;
                 unitOfWork.OrderDetailRepository.Add(recordOrderDetail);
-                unitOfWork.SaveChanges();
-
+               
             }
+            unitOfWork.SaveChanges();
             //xóa tất cả item trong cart
             cart.CartComplete(HttpContext.Session);
 
@@ -160,7 +167,8 @@ namespace WebMobilePhone_Website.Controllers
 
             List<Items> _cart = cart.GetCart(HttpContext.Session);
             //lấy id của customer
-            string customer_id = HttpContext.Session.GetString("customer_id");
+           // string customer_id = HttpContext.Session.GetString("customer_id");
+            var customer_id = UserManager.GetUserId(HttpContext.User).ToString();
             //insert vào bảng order
             Orders recordOrder = new Orders();
             recordOrder.CustomerID = customer_id;
@@ -170,6 +178,7 @@ namespace WebMobilePhone_Website.Controllers
             recordOrder.Price = _cart.Sum(tbl => (double.Parse(((tbl.ProductItem.Price - getMoney(tbl.ProductItem)) * tbl.Quantity).ToString())));
 
             unitOfWork.OrdersRepository.Add(recordOrder);
+            unitOfWork.SaveChanges();
             //lấy id vừa insert
             int order_id = recordOrder.ID;
             foreach (var item in _cart)
@@ -180,9 +189,8 @@ namespace WebMobilePhone_Website.Controllers
                 recordOrderDetail.Price = double.Parse((item.ProductItem.Price - getMoney(item.ProductItem)).ToString());
                 recordOrderDetail.Quantity = item.Quantity;
                 unitOfWork.OrderDetailRepository.Add(recordOrderDetail);
-                unitOfWork.SaveChanges();
             }
-
+            unitOfWork.SaveChanges();
 
             //xóa tất cả item trong cart
             cart.CartDestroy(HttpContext.Session);
@@ -191,60 +199,57 @@ namespace WebMobilePhone_Website.Controllers
 
         }
         //thanh toán bằng paypal
-
+        [Authorize(Roles = Roles.Master + "," + Roles.Admin + "," + Roles.User)]
         public async Task<IActionResult> PaypanlCheckoutAsync()
         {
 
-            if (HttpContext.Session.GetString("email") == null)
+            var environment = new SandboxEnvironment(_clientId, _secretkey);
+            var client = new PayPalHttpClient(environment);
+
+            #region Create Paypal Order
+            var itemList = new ItemList()
             {
-                return Redirect("/Account/Login");
+                Items = new List<Item>()
+            };
+            List<Items> _cart = cart.GetCart(HttpContext.Session);
+            var x = _cart.Sum(tbl => tbl.ThanhTien);
+
+            var total = Math.Round(_cart.Sum(tbl => tbl.ThanhTien) / TyGiaUSD, 2);
+            double total1 = 0;
+
+            foreach (var item in _cart)
+            {
+                itemList.Items.Add(new Item()
+                {
+                    Name = item.ProductItem.Name,
+                    Currency = "USD",
+                    Price = Math.Round((Convert.ToDouble(item.ProductItem.Price - getMoney(item.ProductItem))) / TyGiaUSD, 2).ToString(),
+                    Quantity = item.Quantity.ToString(),
+                    Sku = "sku",
+                    Tax = "0"
+                });
+                total1 += Math.Round((Convert.ToDouble(item.ProductItem.Price - getMoney(item.ProductItem))) / TyGiaUSD, 2) * item.Quantity;
             }
-            else
+            #endregion
+
+            var paypalOrderId = DateTime.Now.Ticks;
+            var hostname = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
+            var payment = new Payment()
             {
-                var environment = new SandboxEnvironment(_clientId, _secretkey);
-                var client = new PayPalHttpClient(environment);
-
-                #region Create Paypal Order
-                var itemList = new ItemList()
-                {
-                    Items = new List<Item>()
-                };
-                List<Items> _cart = cart.GetCart(HttpContext.Session);
-
-                var total = Math.Round(_cart.Sum(tbl => tbl.ThanhTien) / TyGiaUSD, 2);
-
-                foreach (var item in _cart)
-                {
-                    itemList.Items.Add(new Item()
-                    {
-                        Name = item.ProductItem.Name,
-                        Currency = "USD",
-                        Price = Math.Round((Convert.ToDouble(item.ProductItem.Price - getMoney(item.ProductItem))) / TyGiaUSD, 2).ToString(),
-                        Quantity = item.Quantity.ToString(),
-                        Sku = "sku",
-                        Tax = "0"
-                    });
-                }
-                #endregion
-
-                var paypalOrderId = DateTime.Now.Ticks;
-                var hostname = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}";
-                var payment = new Payment()
-                {
-                    Intent = "sale",
-                    Transactions = new List<Transaction>()
+                Intent = "sale",
+                Transactions = new List<Transaction>()
                 {
                     new Transaction()
                     {
                         Amount = new Amount()
                         {
-                            Total = total.ToString(),
+                            Total = total1.ToString(),
                             Currency = "USD",
                             Details = new AmountDetails
                             {
                                 Tax = "0",
                                 Shipping = "0",
-                                Subtotal = (total).ToString()
+                                Subtotal = (total1).ToString()
                             }
                         },
                         ItemList = itemList,
@@ -252,48 +257,47 @@ namespace WebMobilePhone_Website.Controllers
                         InvoiceNumber = paypalOrderId.ToString()
                     }
                 },
-                    RedirectUrls = new RedirectUrls()
-                    {
-                        CancelUrl = $"{hostname}/Cart/checkoutfail",
-                        ReturnUrl = $"{hostname}/Cart/CheckoutPaypal"
-                    },
-                    Payer = new Payer()
-                    {
-                        PaymentMethod = "paypal"
-                    }
-                };
-
-                PaymentCreateRequest request = new PaymentCreateRequest();
-                request.RequestBody(payment);
-
-                try
+                RedirectUrls = new RedirectUrls()
                 {
-                    var response = await client.Execute(request);
-                    //var statusCode = response.StatusCode;
-                    Payment result = response.Result<Payment>();
-
-                    var links = result.Links.GetEnumerator();
-                    string paypalRedirectUrl = null;
-                    while (links.MoveNext())
-                    {
-                        LinkDescriptionObject lnk = links.Current;
-                        if (lnk.Rel.ToLower().Trim().Equals("approval_url"))
-                        {
-                            //saving the payapalredirect URL to which user will be redirected for payment  
-                            paypalRedirectUrl = lnk.Href;
-                        }
-                    }
-
-                    return Redirect(paypalRedirectUrl);
-                }
-                catch (HttpException httpException)
+                    CancelUrl = $"{hostname}/Cart/checkoutfail",
+                    ReturnUrl = $"{hostname}/Cart/CheckoutPaypal"
+                },
+                Payer = new Payer()
                 {
-                    var statusCode = httpException.StatusCode;
-                    var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
-
-                    //Process when Checkout with Paypal fails
-                    return Redirect("/Cart/checkoutfail");
+                    PaymentMethod = "paypal"
                 }
+            };
+
+            PaymentCreateRequest request = new PaymentCreateRequest();
+            request.RequestBody(payment);
+
+            try
+            {
+                var response = await client.Execute(request);
+                //var statusCode = response.StatusCode;
+                Payment result = response.Result<Payment>();
+
+                var links = result.Links.GetEnumerator();
+                string paypalRedirectUrl = null;
+                while (links.MoveNext())
+                {
+                    LinkDescriptionObject lnk = links.Current;
+                    if (lnk.Rel.ToLower().Trim().Equals("approval_url"))
+                    {
+                        //saving the payapalredirect URL to which user will be redirected for payment  
+                        paypalRedirectUrl = lnk.Href;
+                    }
+                }
+
+                return Redirect(paypalRedirectUrl);
+            }
+            catch (HttpException httpException)
+            {
+                var statusCode = httpException.StatusCode;
+                var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
+
+                //Process when Checkout with Paypal fails
+                return Redirect("/Cart/checkoutfail");
             }
         }
 
@@ -304,7 +308,9 @@ namespace WebMobilePhone_Website.Controllers
         public IActionResult DetailBill()
         {
             //lấy id của customer
-            string customer_id = HttpContext.Session.GetString("customer_id");
+            //string customer_id = HttpContext.Session.GetString("customer_id");
+            var customer_id = UserManager.GetUserId(HttpContext.User).ToString();
+            var userId = UserManager.GetUserId(HttpContext.User);
             ViewBag.idkh = customer_id;
 
             List<Orders> list = unitOfWork.OrdersRepository.GetByOrderByCustomer(customer_id).Where(x => x.Status == 0).ToList();
@@ -351,7 +357,8 @@ namespace WebMobilePhone_Website.Controllers
         }
         public IActionResult deleteBill(int id)
         {
-            string customer_id = HttpContext.Session.GetString("customer_id");
+            //string customer_id = HttpContext.Session.GetString("customer_id");
+            var customer_id = UserManager.GetUserId(HttpContext.User).ToString();
             ViewBag.idkh = customer_id;
 
             OrderDetail record = unitOfWork.OrderDetailRepository.Find(id);
