@@ -49,7 +49,7 @@
 
         </div>
         <div class="col-xs-12 col-md-6 info">
-            <h1 itemprop="name">@Model.Name</h1>
+            <h2 itemprop="name">@Model.Name</h2>
             <p class="vendor"> Category:&nbsp; <span>@GetCategory(Model.CategoryID)</span></p>
             <p itemprop="price" class="price-box product-price-box" style="color:red ; font-size: 15px;"> <span class="special-price"> <span class="price product-price" style="text-decoration:line-through;">@string.Format("{0:#,#.}", @Model.Price ) </span>VND</span></p>
             <p itemprop="price" class="price-box product-price-box"> <span class="special-price"> <span class="price product-price"> @string.Format("{0:#,#.}", Model.Price - getMoney(Model))  </span>VND</span></p>
@@ -63,7 +63,7 @@
             {
                 <a href="/Cart/Buy/@Model.ID" class="btn btn-primary">Cho vào giỏ hàng</a>
             }
-
+            
             <!-- rating -->
             <div style="border:1px solid #dddddd; margin-top: 15px;">
                 <h4 style="padding-left: 10px;">Rating</h4>
@@ -96,8 +96,10 @@
     </div>
 </div>
 <div class="middle">
+    <br />
     <!-- chi tiet -->
     @Html.Raw(Model.Decription)
     @Html.Raw(Model.Content)
     <!-- chi tiet -->
+    <br />
 </div>

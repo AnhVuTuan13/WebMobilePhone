@@ -53,7 +53,7 @@
                             var Price = item.ProductItem.Price - getMoney(item.ProductItem);
                             <tr>
                                 <td><img src="~/Upload/Products/@item.ProductItem.Photo" class="img-responsive" /></td>
-                                <td><a href="/Product/Detail/@item.ProductItem.ID">@item.ProductItem.Name</a></td>
+                                <td><a href="/Products/Detail/@item.ProductItem.ID">@item.ProductItem.Name</a></td>
                                 <td> @string.Format("{0:#,#.}", Price) </td>
                                 <td><input type="number" id="qty" min="1" class="input-control" value="@item.Quantity" name="product_@item.ProductItem.ID" required="Không thể để trống"></td>
                                 <td><p><b>@string.Format("{0:#,#.}", item.Quantity * Price)₫</b></p></td>

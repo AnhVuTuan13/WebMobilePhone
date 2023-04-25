@@ -45,6 +45,35 @@ namespace WebMobilePhone_Website.Controllers
             }
             return View("Category", listRecord.ToPagedList(_currentPage, sobanghitren1trang));
         }
+        public IActionResult ProductsAll( int? page)
+        {
+
+            int _currentPage = page ?? 1;
+            //lấy tất cả bản ghi
+            int sobanghitren1trang = 20;
+
+            string _order = !string.IsNullOrEmpty(Request.Query["order"]) ? Request.Query["order"] : "";
+            List<Products> listRecord = new List<Products>();
+            switch (_order)
+            {
+                case "priceAsc":
+                    listRecord = unitOfWork.ProductsRepository.GetAll().OrderBy(p => p.Price).ToList();
+                    break;
+                case "priceDesc":
+                    listRecord = unitOfWork.ProductsRepository.GetAll().OrderByDescending(p => p.Price).ToList();
+                    break;
+                case "nameAsc":
+                    listRecord = unitOfWork.ProductsRepository.GetAll().OrderBy(p => p.Name).ToList();
+                    break;
+                case "nameDesc":
+                    listRecord = unitOfWork.ProductsRepository.GetAll().OrderByDescending(p => p.Name).ToList();
+                    break;
+                default:
+                    listRecord = unitOfWork.ProductsRepository.GetAll().OrderByDescending(p => p.ID).ToList();
+                    break;
+            }
+            return View("ProductsAll", listRecord.ToPagedList(_currentPage, sobanghitren1trang));
+        }
         //chi tiết sản phẩm
         public IActionResult Detail(int? id)
         {

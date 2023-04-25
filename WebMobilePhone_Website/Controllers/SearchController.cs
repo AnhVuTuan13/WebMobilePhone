@@ -3,6 +3,8 @@ using WebMobilePhone_DataAccess.Infrastructures;
 using X.PagedList;
 using WebMobilePhone_Models.Models;
 using WebMobilePhone_Website.Models;
+using System.Linq;
+
 namespace WebMobilePhone_Website.Controllers
 {
     public class SearchController : Controller
@@ -54,17 +56,17 @@ namespace WebMobilePhone_Website.Controllers
             int _RecordPerPage = 20;
             //---
             string key = !String.IsNullOrEmpty(Request.Query["key"]) ? Request.Query["key"] : "";
-            List<Products> listRecord = unitOfWork.ProductsRepository.GetAll().Where(tbl => tbl.Name.Contains(key)).ToList();
+            List<Products> listRecord = unitOfWork.ProductsRepository.GetAll().Where(tbl => tbl.Name.ToLower().Contains(key.ToLower())).ToList();
             return View("SearchProducts", listRecord.ToPagedList(_CurrentPage, _RecordPerPage));
         }
         public string AJax()
         {
             string key = !String.IsNullOrEmpty(Request.Query["key"]) ? Request.Query["key"] : "";
-            List<Products> listRecord = unitOfWork.ProductsRepository.GetAll().Where(tbl => tbl.Name.Contains(key)).ToList();
+            List<Products> listRecord = unitOfWork.ProductsRepository.GetAll().Where(tbl => tbl.Name.ToLower().Contains(key.ToLower())).ToList();
             string str = "";
             foreach (var item in listRecord)
             {
-                str = str + "<li><a href='/Products/Detail/" + item.ID + "'><img src='/Upload/Products/" + item.Photo + "'/> " + item.Name + "</a></li>";
+                str = str + "<li><a href='/Products/Detail/" + item.ID + "'><img style='' src='/Upload/Products/" + item.Photo + "'/> " + item.Name + "</a></li>";
             }
             return str;
         }
