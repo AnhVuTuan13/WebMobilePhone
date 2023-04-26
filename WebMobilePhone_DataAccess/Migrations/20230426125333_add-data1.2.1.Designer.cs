@@ -12,8 +12,8 @@ using WebMobilePhone_DataAccess.Data;
 namespace WebMobilePhone_DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230425160746_Add_Data_1.0.6")]
-    partial class Add_Data_106
+    [Migration("20230426125333_add-data1.2.1")]
+    partial class adddata121
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -54,21 +54,21 @@ namespace WebMobilePhone_DataAccess.Migrations
                         new
                         {
                             Id = "58cd381e-8683-4b42-b7b6-70b6274bfa84",
-                            ConcurrencyStamp = "3ee2c457-a673-4b62-b807-78101df57750",
+                            ConcurrencyStamp = "7e3fcf14-f4e2-4dce-97e6-08b914940768",
                             Name = "Master",
                             NormalizedName = "MASTER"
                         },
                         new
                         {
                             Id = "97ddd633-2a4d-42b3-8f82-a5fe1d94173a",
-                            ConcurrencyStamp = "5cdbc500-ffd1-4675-a1c7-dd1c403be11f",
+                            ConcurrencyStamp = "e8a58ef3-f49b-4f4d-9ebf-1c758157fb8d",
                             Name = "User",
                             NormalizedName = "USER"
                         },
                         new
                         {
                             Id = "399b34de-5b32-48b2-86b4-fb0881a2517c",
-                            ConcurrencyStamp = "9b088bef-5ecb-42a7-9963-77ce38d35a66",
+                            ConcurrencyStamp = "f9b0cbad-8c81-468c-85ba-fb0becac14ef",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -306,6 +306,35 @@ namespace WebMobilePhone_DataAccess.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("News");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = 1,
+                            Content = "<br><br>Hình ảnh render phía trên cho thấy hai mặt trước sau của OPPO Reno10 Pro Plus được làm cong và đây là phiên bản màu đen. Chưa hết, trung tâm phía trên của màn hình có một lỗ khuyết chứa camera selfie. Gần đây, OPPO Reno10 Pro Plus cũng đã đạt chứng nhận về chất lượng ở Trung Quốc, tiết lộ máy hỗ trợ sạc nhanh 100 W.Giới thạo tin cho biết Reno10 Pro Plus có thể sở hữu màn hình OLED 1.5K 6.74 inch tích hợp cảm biến vân tay, dùng chip Snapdragon 8+ Gen 1, kết hợp với 16 GB RAM LPDDR5 và 256 GB hoặc 512 GB ROM UFS 3.1. Tân binh này được cho là có camera trước 32 MP và ba camera sau: chính 50 MP với OIS + góc siêu rộng 8 MP + tele 64 MP.<br><br>Bạn kỳ vọng điều gì ở OPPO Reno10 Pro Plus? Trong lúc chờ đợi dòng OPPO Reno10 ra mắt, các bạn có thể tham khảo thêm nhiều mẫu smartphone khác thuộc dòng OPPO Reno đang có giá bán tốt tại Thế Giới Di Động, bằng cách click vào nút màu cam bên dưới.<br><br>",
+                            Description = "OPPO Reno10 series được cho là sắp ra mắt tại Trung Quốc, bao gồm: Reno10, Reno10 Pro và Reno10 Pro Plus. Trong đó, Reno10 Pro Plus vừa bị lộ ảnh render sắc nét.<br><br>Trang Gizmochina dẫn thông tin và hình ảnh từ một nguồn trên Weibo, cho thấy ảnh render OPPO Reno10 Pro Plus bên dưới khớp với sơ đồ bị rò rỉ hồi cuối năm 2022. Có vẻ như OPPO đang muốn đại tu thiết kế camera sau của Reno10 Pro Plus khi chuyển sang mô-đun hình viên thuốc chứa tổng cộng ba cảm biến và đèn flash LED.",
+                            Hot = 1,
+                            Name = "OPPO Reno10 Pro Plus lộ ảnh render với cấu trúc camera sau được đại tu thiết kế",
+                            Photo = "oppo-reno10-pro-plus-camera-260423-181732-800-resize.jpg"
+                        },
+                        new
+                        {
+                            ID = 2,
+                            Content = "Hộp đựng của realme Narzo N55 có màu xanh dương rất tươi mát và thu hút. Cách đóng hộp của máy thì tương tự như những chiếc điện thoại khác của realme. Cụ thể, phía trước hộp in tên máy Narzo N55 màu trắng và phía sau chứa các thông tin về thiết bị cũng như nhà sản xuất.<br><br>Bên trong hộp, bạn sẽ tìm thấy realme Narzo N55 cùng sách hướng dẫn sử dụng, ốp lưng, củ sạc, cáp sạc USB-C và que chọc SIM.<br><br><br> <img src=  'http://cdn.tgdd.vn/Files/2023/04/25/1527353/30-250423-122119-800-resize.jpg' style='display: block; margin-left: auto; margin-right: auto; width:780px; height:433px;' /> <br>Các phụ kiện đi kèm với realme Narzo N55 đa dạng và đáp ứng tốt nhu cầu của người dùng. Chúng ta có thể sử dụng máy ngay lập tức mà không cần tìm mua thêm ốp hay củ sạc, tránh những phiền toái không đáng có như một số sản phẩm khác bị cắt giảm phụ kiện vì nhiều lý do.<br><br>realme Narzo N55 sở hữu thiết kế hiện đại, thanh lịch với hai mặt phẳng và khung viền vuông vức. Cách thiết kế này đang là xu hướng chung và được nhiều nhà sản xuất áp dụng. Tính thẩm mỹ và hợp thời là điều được kênh YouTube Techno Ruhez đánh giá cao ở thiết bị này. Ngoài ra, các góc của realme Narzo N55 được bo cong giúp cho việc cầm nắm máy trở nên dễ dàng hơn, không bị cấn hay khó chịu dù bạn có tay to hay nhỏ.<br><br><br> <img src=  'http://cdn.tgdd.vn/Files/2023/04/25/1527353/35-250423-122239-800-resize.jpg' style='display: block; margin-left: auto; margin-right: auto; width:780px; height:433px;' /> <br>realme Narzo N55 có kích thước tổng thể là 165.6 x 75.9 x 7.89 mm và nặng khoảng 189.5 gram. Theo kênh Techno Ruhez thì đây là những thông số rất tối ưu cho việc cầm nắm và sử dụng. Nhờ đó, chúng ta có thể sử dụng realme Narzo N55 để lướt mạng xã hội, xem phim hay chơi game trong thời gian dài mà không bị mỏi tay, việc thao tác với máy bằng một tay cũng không bị khó khăn.<br><br>Mặc dù tổng thể có sự tương đồng với nhiều thiết bị trên thị trường nhưng nhà sản xuất realme đã tạo nên sự khác biệt cho realme Narzo N55 thông qua cách thiết kế mặt sau. Cụ thể, mặt sau của máy được chia làm hai phần, với phần nhỏ hơn bên trên chứa các ống kính camera dạng thả nổi. Bề mặt được hoàn thiện bóng với hiệu ứng chuyển màu hologram nhạt rất độc đáo nhưng vẫn giữ được tính thẩm mỹ và không bị quá lòe loẹt.<br><br>Ở mặt trước, realme Narzo N55 sở hữu màn hình dạng đục lỗ với các cạnh viền xung quanh cân đối, chỉ có phần cạnh dưới hơi dày một chút. Nhờ vào việc được nhà sản xuất tối ưu các cạnh viền mà tỉ lệ màn hình so với thân máy của realme Narzo N55 đạt 91.4%. Đây là con số rất tốt khi mang lại cho người dùng không gian hiển thị lớn nhưng vẫn đảm bảo được ngoại hình nhỏ gọn. <br><br><br> <img src=  'http://cdn.tgdd.vn/Files/2023/04/25/1527353/39-250423-122436-800-resize.jpg' style='display: block; margin-left: auto; margin-right: auto; width:780px; height:433px;' /> <br>Nhìn chung, thiết kế là một điểm cộng lớn của realme Narzo N55. Thiết bị sở hữu ngoại hình đẹp mắt, bóng bẩy và rất hợp với xu hướng hiện tại. realme Narzo N55 sẽ được bán ra với hai tùy chọn màu sắc là đen và xanh dương để người dùng tùy chọn theo sở thích của bản thân.",
+                            Description = "Tính đến thời điểm hiện tại, realme Narzo N55 đang là một trong những chiếc smartphone của realme được người dùng quan tâm nhất. Vậy realme Narzo N55 có gì mới? realme Narzo N55 cấu hình như thế nào? realme Narzo N55 thiết kế ra sao? realme Narzo N55 giá bao nhiêu? Mời các bạn cùng mình trên tay realme Narzo N55 và khám phá sản phẩm này nhé!",
+                            Hot = 1,
+                            Name = "Trên tay realme Narzo N55: Giá chỉ từ 3.2 triệu đã có thiết kế đẹp, chip Helio G88, sạc nhanh 33 W",
+                            Photo = "1-250423-121948-800-resize.jpg"
+                        },
+                        new
+                        {
+                            ID = 3,
+                            Content = "POCO đã chính thức xác nhận ra mắt POCO F5 Pro tại Việt Nam qua fanpage Facebook chính thức của hãng, dự kiến hãng sẽ ra mắt POCO F5 Pro qua hình thức livestream trên 2 nền tảng chính đó là YouTube và FaceBook vào ngày 09/05/2023 lúc 19:00.<br><br><br> <img src=  'http://cdn.tgdd.vn/Files/2023/04/26/1527595/poco-f5-tgdd-321313213131231-1-260423-181920-800-resize.jpg' style='display: block; margin-left: auto; margin-right: auto; width:780px; height:433px;' /> <br>Đúng như các tin đồn trước đây, POCO sẽ bỏ qua việc ra mắt POCO F5 thay vào đó hãng sẽ cho ra mắt POCO F5 Pro. Bên cạnh đó 24h Công nghệ sẽ liên tục cập thông tin mới nhất về POCO F5 Pro cho quý bạn đọc.<br><br>Sau khi xuất hiện trên cơ sở dữ liệu Geekbench, thông tin về cấu hình dự kiến của POCO F5 Pro đã bắt đầu hé lộ. Theo các dữ liệu bị rò rỉ, thiết bị dự kiến sử dụng bộ vi xử lý tương tự như Redmi K60, gợi ý rằng POCO F5 Pro có thể là phiên bản đổi tên của Redmi K60.<br><br><br> <img src=  'http://cdn.tgdd.vn/Files/2023/04/26/1527595/poco-f5-pro-thumb-5-260423-181507-800-resize.jpg' style='display: block; margin-left: auto; margin-right: auto; width:780px; height:433px;' /> <br>Thông qua Geekbench, mã số model của POCO F5 Pro là \"23013PC75G\", bên cạnh đó bộ vi xử lý của smartphone cũng có thông số khá tương đồng với Snapdragon 8 Gen 1.<br><br><br> <img src=  'http://cdn.tgdd.vn/Files/2023/04/26/1527595/poco-f5-pro-thumb-2-260423-181452-800-resize.jpg' style='display: block; margin-left: auto; margin-right: auto; width:780px; height:433px;' /> <br>Đáng chú ý, phiên bản cao cấp nhất của Redmi K60 sở hữu bộ nhớ RAM 16 GB và ROM 512 GB. Trong bài kiểm tra Geekbench, POCO F5 Pro đạt được điểm số ấn tượng với 1.302 điểm đơn nhân và 4.080 điểm đa nhân, cho thấy hiệu năng mạnh mẽ của chip Snapdragon 8 Gen 1 sẽ mang lại.<br><br>",
+                            Description = "Mới đây (26/4) trên fanpage chính thức của POCO đã đăng tải dòng trạng thái \"Sắp đổ bộ\" kèm theo poster về việc ra mắt POCO F5 Pro tại Việt Nam, chắc hẳn các bạn cũng đang khá tò mò về POCO F5 Pro rồi phải không nào? Hãy cùng 24h Công nghệ khám phá thiết bị qua bài viết này nhé!<br><br>",
+                            Hot = 1,
+                            Name = "POCO F5 Pro được xác nhận ra mắt tại Việt Nam, nhanh tay 'gom lúa' thôi nào cả nhà",
+                            Photo = "poco-f5-pro-thumb-1-260423-181427-800-resize.jpg"
+                        });
                 });
 
             modelBuilder.Entity("WebMobilePhone_Models.Models.OrderDetail", b =>
@@ -880,15 +909,15 @@ namespace WebMobilePhone_DataAccess.Migrations
                             Id = "08bc2fc1-5387-4033-b7d3-8208d29746ff",
                             AccessFailedCount = 0,
                             Address = "Hà Nội",
-                            ConcurrencyStamp = "668e3749-407b-4931-a28f-607e63c31996",
+                            ConcurrencyStamp = "02837fbc-67e8-427b-9420-aa35b0740ccd",
                             Email = "user@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "USER@LOCALHOST.COM",
                             NormalizedUserName = "USER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGYtkxa3vPFkKNVf8Hi80jfX3HXMETR6HhfnskiOiGEkz39NiXL4P8BW6HfGGYRQeA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHouPClf9a32Fy37o52c6cnwQ6RNP9VQpgItvkHDbNCKJ82ULRxVgmI8Nmvhyr0KMA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "3f4a0042-95e2-4049-bb97-b1b7a4baeeb9",
+                            SecurityStamp = "d6a0c889-d1c8-4cb5-9100-46560742a2f7",
                             TwoFactorEnabled = false,
                             UserName = "user@localhost.com"
                         },
@@ -897,15 +926,15 @@ namespace WebMobilePhone_DataAccess.Migrations
                             Id = "9fa0160f-c2c6-4124-8221-4f465e979807",
                             AccessFailedCount = 0,
                             Address = "Hà Nam",
-                            ConcurrencyStamp = "36a93f4c-1942-4a83-aad5-f054e91b72d9",
+                            ConcurrencyStamp = "9a1fde2e-7ce4-447f-bab0-6cc0caacfd02",
                             Email = "Admin@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@LOCALHOST.COM",
                             NormalizedUserName = "ADMIN@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEMdmE2avqZgrLxNLF/h0m7jSiqtXewlJAJu+UmGYG+Tn50tJ+Myub5jxG2VeXqJ25Q==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF2htRSl86FwvrUulMhBs0T+I/SlRSg4Z/fkFSbWiYtyJZKBSjqLvjmOl4/ZYJbjIw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "aa1939e1-f8e4-44aa-b227-27cbb7ca9eae",
+                            SecurityStamp = "300588a7-3766-4532-9f72-dd334a9db9ea",
                             TwoFactorEnabled = false,
                             UserName = "admin@localhost.com"
                         },
@@ -914,15 +943,15 @@ namespace WebMobilePhone_DataAccess.Migrations
                             Id = "3fa0160f-c2c6-4124-8221-4f465e979807",
                             AccessFailedCount = 0,
                             Address = "Hà Nam",
-                            ConcurrencyStamp = "e374e6d7-0ab7-4355-b84d-9d6ea6dde8b1",
+                            ConcurrencyStamp = "b767e89e-7ea7-4ded-a87e-da98abae43d2",
                             Email = "Master@localhost.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MASTER@LOCALHOST.COM",
                             NormalizedUserName = "MASTER@LOCALHOST.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEKgcLVTCRQcEBTrKait0/+mBiWIlUWcfEs5tzHSbDZIGfPtjj/Om8U0ZcwYwk8ySmg==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIrUZ35BO+QYYZUIkLZt+RGOnLpbYWcP+a+BXoPxSWnI7i9hyEd7YqH3yB0EYrNb4w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b73c83c4-2657-4e1f-8aeb-0a2eb04018fb",
+                            SecurityStamp = "aa4debe4-0e42-482c-903b-251f65774b32",
                             TwoFactorEnabled = false,
                             UserName = "master@localhost.com"
                         });

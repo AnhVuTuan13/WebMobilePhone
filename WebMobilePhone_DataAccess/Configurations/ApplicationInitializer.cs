@@ -136,7 +136,7 @@ namespace WebMobilePhone_DataAccess.Configurations
                     Name = "iPhone 12 Pro 256GB I Chính hãng VN/A",
                     CategoryID = 1,
                     Decription = "Mẫu iPhone 2020 mới nhất của Apple được thiết kế khung viền vuông sang trọng được nhiều người dùng yêu thích. Trong đó, phiên bản <b>iPhone 12 Pro 256GB chính hãng VNA</b> hứa hẹn là một trong những sự lựa chọn lý tưởng.",
-                    Content = "<br><br> " + 
+                    Content = "<br><br> " +
                     comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/228738/iphone-12-pro-256gb-130021-030015.jpg") +
                       "<br><br>" +
                       "iPhone 12 Pro 256GB chính hãng VNA được thiết kế với khung viền vuông vắn – sang trọng. Thiết kế mang hơi hướng của các sản phẩm iPhone 4, 5 trước đó. Máy hỗ trợ kết nối 4G, mang đến tốc độ lướt web nhanh chóng." +
@@ -177,11 +177,11 @@ namespace WebMobilePhone_DataAccess.Configurations
                     Content = "<br><br>" +
                       "Được nâng cấp đáng kể thời lượng pin từ thế hệ tiền nhiệm khi bạn có thể xem phim liên tục 15 tiếng đồng hồ và có cả sạc nhanh 20 W giúp bạn có thể rút ngắn thời gian sạc." +
                       "<br><br>" +
-                      comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/274158/iphone-se-128gb-2022-2.jpg")+
+                      comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/274158/iphone-se-128gb-2022-2.jpg") +
                       "<br><br>" +
                       "Mang trên mình camera sau 12 MP và camera trước 7 MP có lẽ nhiều người sẽ cho rằng nó khá khiêm tốn khi hầu hết các điện thoại thời nay đều có độ phân giải camera chính khá cao. Nhưng bạn đừng quá lo lắng, thuật toán chụp ảnh trên iPhone rất tuyệt vời, nó sẽ cho bạn những tấm ảnh tuyệt vời nhất. " +
                       "<br><br>" +
-                      comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/274158/Slider/iphone-se-128gb-2022637858889715407654.jpg")+
+                      comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/274158/Slider/iphone-se-128gb-2022637858889715407654.jpg") +
                       "Nếu như nhu cầu chụp ảnh của bạn đòi hỏi chất lượng cao hơn thì điện thoại iPhone 14 Pro Max có thể sẽ là lựa chọn phù hợp hơn, máy sở hữu cụm 3 camera trong đó cảm biến chính có độ phân giải lên tới 48 MP." +
                       "<br><br>" +
                       "Theo mình thấy, vì đây chỉ là một chiếc điện thoại được cho là nằm ở phân khúc tầm trung của nhà Apple nhưng vẫn được trang bị khá nhiều công nghệ hiện đại, mang đến cho bạn một trải nghiệm mượt mà, ấn tượng." +
@@ -358,7 +358,7 @@ namespace WebMobilePhone_DataAccess.Configurations
                     "Về màu sắc, năm nay Samsung cũng đã cho ra các phiên bản màu như: Tím, kem, xanh và đen. Nhìn chung thì đây là những màu sắc cực kỳ sang trọng và lịch lãm, phù hợp cho các bạn trẻ năng động, mạnh mẽ và đặc biệt là những khách hàng đang là doanh nhân bởi ngoại hình đẳng cấp và thanh lịch." +
                     "<br>" +
                     "<br>" +
-                    comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/249948/Slider/tong-quan-s23-ultra-1020x570.jpg")+
+                    comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/249948/Slider/tong-quan-s23-ultra-1020x570.jpg") +
                     "Bộ khung này được làm theo kiểu bóng loáng giúp máy có thêm một điểm nhấn đầy nổi bật về thiết kế. Cảm giác khi sờ vào bộ khung như được phủ một lớp mạ bóng xung quanh, vì thế đây sẽ không phải là vị trí dễ xước như một bộ phận người người dùng hoài nghi. " +
                     "<br>" +
                     "<br>" +
@@ -545,7 +545,7 @@ namespace WebMobilePhone_DataAccess.Configurations
                     "<br> <br>" +
                     "Thật sự mà nói, Galaxy S23 5G 256GB có chất lượng hoàn thiện khá cao, từng chi tiết trên sản phẩm được gia công rất cẩn thận, khung máy được chế tác bằng kim loại cứng cáp và bền bỉ. Với kiểu dáng nhỏ gọn của mình, thiết bị cho cảm giác cầm nắm khá là chắc chắn và đằm tay." +
                     "<br> <br>" +
-                    comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/301795/Slider/man-hinh-s23-series-1020x570.jpg")+
+                    comonFunction.ImageTag("cdn.tgdd.vn/Products/Images/42/301795/Slider/man-hinh-s23-series-1020x570.jpg") +
                     "Giống với đàn anh đã ra mắt trước đó, mặt lưng của Galaxy S23 5G 256GB cũng được hoàn thiện từ kính với thiết kế phẳng, viền màn hình được làm mỏng ở cả 4 cạnh trông rất cân đối. Tuy nhiên, cụm camera phía sau lại có chút thay đổi, đi theo hơi hướng thiết kế giống trên mẫu Galaxy S22 Ultra với kiểu bố trí ống kính riêng lẻ và không đặt chung cụm.\r\n\r\n" +
                     "<br> <br>" +
                     "Galaxy S23 được hãng ưu ái trang bị màn hình Dynamic AMOLED 2X kích thước 6.1 inch, độ phân giải Full HD+ cùng tần số quét 120 Hz, điều này mang lại khả năng hiển thị hình ảnh vô cùng chi tiết với màu đen sâu và được bảo vệ bởi kính cường lực cao cấp." +
@@ -943,9 +943,77 @@ namespace WebMobilePhone_DataAccess.Configurations
                     DiscountID = 1,
                     Amount = 50
                 }
-
                 );
 
+            modelBuilder.Entity<News>().HasData(
+                new News
+                {
+                    ID=1,
+                    Name = "OPPO Reno10 Pro Plus lộ ảnh render với cấu trúc camera sau được đại tu thiết kế",
+                    Description = "OPPO Reno10 series được cho là sắp ra mắt tại Trung Quốc, bao gồm: Reno10, Reno10 Pro và Reno10 Pro Plus. Trong đó, Reno10 Pro Plus vừa bị lộ ảnh render sắc nét." +
+                    "<br><br>" +
+                    "Trang Gizmochina dẫn thông tin và hình ảnh từ một nguồn trên Weibo, cho thấy ảnh render OPPO Reno10 Pro Plus bên dưới khớp với sơ đồ bị rò rỉ hồi cuối năm 2022. Có vẻ như OPPO đang muốn đại tu thiết kế camera sau của Reno10 Pro Plus khi chuyển sang mô-đun hình viên thuốc chứa tổng cộng ba cảm biến và đèn flash LED." ,
+                    Content= "<br><br>" +
+                    "Hình ảnh render phía trên cho thấy hai mặt trước sau của OPPO Reno10 Pro Plus được làm cong và đây là phiên bản màu đen. Chưa hết, trung tâm phía trên của màn hình có một lỗ khuyết chứa camera selfie. Gần đây, OPPO Reno10 Pro Plus cũng đã đạt chứng nhận về chất lượng ở Trung Quốc, tiết lộ máy hỗ trợ sạc nhanh 100 W." +
+                    "Giới thạo tin cho biết Reno10 Pro Plus có thể sở hữu màn hình OLED 1.5K 6.74 inch tích hợp cảm biến vân tay, dùng chip Snapdragon 8+ Gen 1, kết hợp với 16 GB RAM LPDDR5 và 256 GB hoặc 512 GB ROM UFS 3.1. Tân binh này được cho là có camera trước 32 MP và ba camera sau: chính 50 MP với OIS + góc siêu rộng 8 MP + tele 64 MP." +
+                    "<br><br>" +
+                    "Bạn kỳ vọng điều gì ở OPPO Reno10 Pro Plus? Trong lúc chờ đợi dòng OPPO Reno10 ra mắt, các bạn có thể tham khảo thêm nhiều mẫu smartphone khác thuộc dòng OPPO Reno đang có giá bán tốt tại Thế Giới Di Động, bằng cách click vào nút màu cam bên dưới." +
+                    "<br><br>",
+                    Hot = 1,
+                    Photo= "oppo-reno10-pro-plus-camera-260423-181732-800-resize.jpg"
+                },
+                new News
+                {
+                    ID = 2,
+                    Name = "Trên tay realme Narzo N55: Giá chỉ từ 3.2 triệu đã có thiết kế đẹp, chip Helio G88, sạc nhanh 33 W",
+                    Description = "Tính đến thời điểm hiện tại, realme Narzo N55 đang là một trong những chiếc smartphone của realme được người dùng quan tâm nhất. Vậy realme Narzo N55 có gì mới? realme Narzo N55 cấu hình như thế nào? realme Narzo N55 thiết kế ra sao? realme Narzo N55 giá bao nhiêu? Mời các bạn cùng mình trên tay realme Narzo N55 và khám phá sản phẩm này nhé!",
+                    Content= "Hộp đựng của realme Narzo N55 có màu xanh dương rất tươi mát và thu hút. Cách đóng hộp của máy thì tương tự như những chiếc điện thoại khác của realme. Cụ thể, phía trước hộp in tên máy Narzo N55 màu trắng và phía sau chứa các thông tin về thiết bị cũng như nhà sản xuất." +
+                     "<br><br>" +
+                     "Bên trong hộp, bạn sẽ tìm thấy realme Narzo N55 cùng sách hướng dẫn sử dụng, ốp lưng, củ sạc, cáp sạc USB-C và que chọc SIM." +
+                     "<br><br>" +
+                     comonFunction.ImageTag("cdn.tgdd.vn/Files/2023/04/25/1527353/30-250423-122119-800-resize.jpg") +
+                     "Các phụ kiện đi kèm với realme Narzo N55 đa dạng và đáp ứng tốt nhu cầu của người dùng. Chúng ta có thể sử dụng máy ngay lập tức mà không cần tìm mua thêm ốp hay củ sạc, tránh những phiền toái không đáng có như một số sản phẩm khác bị cắt giảm phụ kiện vì nhiều lý do." +
+                     "<br><br>" +
+                     "realme Narzo N55 sở hữu thiết kế hiện đại, thanh lịch với hai mặt phẳng và khung viền vuông vức. Cách thiết kế này đang là xu hướng chung và được nhiều nhà sản xuất áp dụng. Tính thẩm mỹ và hợp thời là điều được kênh YouTube Techno Ruhez đánh giá cao ở thiết bị này. Ngoài ra, các góc của realme Narzo N55 được bo cong giúp cho việc cầm nắm máy trở nên dễ dàng hơn, không bị cấn hay khó chịu dù bạn có tay to hay nhỏ." +
+                     "<br><br>" +
+                     comonFunction.ImageTag("cdn.tgdd.vn/Files/2023/04/25/1527353/35-250423-122239-800-resize.jpg") +
+                     "realme Narzo N55 có kích thước tổng thể là 165.6 x 75.9 x 7.89 mm và nặng khoảng 189.5 gram. Theo kênh Techno Ruhez thì đây là những thông số rất tối ưu cho việc cầm nắm và sử dụng. Nhờ đó, chúng ta có thể sử dụng realme Narzo N55 để lướt mạng xã hội, xem phim hay chơi game trong thời gian dài mà không bị mỏi tay, việc thao tác với máy bằng một tay cũng không bị khó khăn." +
+                     "<br><br>" +
+
+                     "Mặc dù tổng thể có sự tương đồng với nhiều thiết bị trên thị trường nhưng nhà sản xuất realme đã tạo nên sự khác biệt cho realme Narzo N55 thông qua cách thiết kế mặt sau. Cụ thể, mặt sau của máy được chia làm hai phần, với phần nhỏ hơn bên trên chứa các ống kính camera dạng thả nổi. Bề mặt được hoàn thiện bóng với hiệu ứng chuyển màu hologram nhạt rất độc đáo nhưng vẫn giữ được tính thẩm mỹ và không bị quá lòe loẹt." +
+                     "<br><br>" +
+                     "Ở mặt trước, realme Narzo N55 sở hữu màn hình dạng đục lỗ với các cạnh viền xung quanh cân đối, chỉ có phần cạnh dưới hơi dày một chút. Nhờ vào việc được nhà sản xuất tối ưu các cạnh viền mà tỉ lệ màn hình so với thân máy của realme Narzo N55 đạt 91.4%. Đây là con số rất tốt khi mang lại cho người dùng không gian hiển thị lớn nhưng vẫn đảm bảo được ngoại hình nhỏ gọn. " +
+                     "<br><br>" +
+                     comonFunction.ImageTag("cdn.tgdd.vn/Files/2023/04/25/1527353/39-250423-122436-800-resize.jpg") +
+                    "Nhìn chung, thiết kế là một điểm cộng lớn của realme Narzo N55. Thiết bị sở hữu ngoại hình đẹp mắt, bóng bẩy và rất hợp với xu hướng hiện tại. realme Narzo N55 sẽ được bán ra với hai tùy chọn màu sắc là đen và xanh dương để người dùng tùy chọn theo sở thích của bản thân.",
+                    Hot = 1,
+                    Photo = "1-250423-121948-800-resize.jpg"
+                },
+                new News
+                {
+                    ID=3,
+                    Name= "POCO F5 Pro được xác nhận ra mắt tại Việt Nam, nhanh tay 'gom lúa' thôi nào cả nhà",
+                    Photo = "poco-f5-pro-thumb-1-260423-181427-800-resize.jpg",
+                    Hot=1,
+                    Description = "Mới đây (26/4) trên fanpage chính thức của POCO đã đăng tải dòng trạng thái \"Sắp đổ bộ\" kèm theo poster về việc ra mắt POCO F5 Pro tại Việt Nam, chắc hẳn các bạn cũng đang khá tò mò về POCO F5 Pro rồi phải không nào? Hãy cùng 24h Công nghệ khám phá thiết bị qua bài viết này nhé!" +
+                    "<br><br>",
+                    Content= "POCO đã chính thức xác nhận ra mắt POCO F5 Pro tại Việt Nam qua fanpage Facebook chính thức của hãng, dự kiến hãng sẽ ra mắt POCO F5 Pro qua hình thức livestream trên 2 nền tảng chính đó là YouTube và FaceBook vào ngày 09/05/2023 lúc 19:00." +
+                    "<br><br>" +
+                    comonFunction.ImageTag("cdn.tgdd.vn/Files/2023/04/26/1527595/poco-f5-tgdd-321313213131231-1-260423-181920-800-resize.jpg") +
+                    "Đúng như các tin đồn trước đây, POCO sẽ bỏ qua việc ra mắt POCO F5 thay vào đó hãng sẽ cho ra mắt POCO F5 Pro. Bên cạnh đó 24h Công nghệ sẽ liên tục cập thông tin mới nhất về POCO F5 Pro cho quý bạn đọc." +
+                    "<br><br>" +
+                    "Sau khi xuất hiện trên cơ sở dữ liệu Geekbench, thông tin về cấu hình dự kiến của POCO F5 Pro đã bắt đầu hé lộ. Theo các dữ liệu bị rò rỉ, thiết bị dự kiến sử dụng bộ vi xử lý tương tự như Redmi K60, gợi ý rằng POCO F5 Pro có thể là phiên bản đổi tên của Redmi K60." +
+                    "<br><br>" +
+                    comonFunction.ImageTag("cdn.tgdd.vn/Files/2023/04/26/1527595/poco-f5-pro-thumb-5-260423-181507-800-resize.jpg") +
+                    "Thông qua Geekbench, mã số model của POCO F5 Pro là \"23013PC75G\", bên cạnh đó bộ vi xử lý của smartphone cũng có thông số khá tương đồng với Snapdragon 8 Gen 1." +
+                    "<br><br>" +
+                    comonFunction.ImageTag("cdn.tgdd.vn/Files/2023/04/26/1527595/poco-f5-pro-thumb-2-260423-181452-800-resize.jpg")+
+                    "Đáng chú ý, phiên bản cao cấp nhất của Redmi K60 sở hữu bộ nhớ RAM 16 GB và ROM 512 GB. Trong bài kiểm tra Geekbench, POCO F5 Pro đạt được điểm số ấn tượng với 1.302 điểm đơn nhân và 4.080 điểm đa nhân, cho thấy hiệu năng mạnh mẽ của chip Snapdragon 8 Gen 1 sẽ mang lại." +
+                    "<br><br>" +
+                    "",
+
+                }
+            );
         }
     }
 }
