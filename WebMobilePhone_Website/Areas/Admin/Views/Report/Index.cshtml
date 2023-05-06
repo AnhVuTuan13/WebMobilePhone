@@ -217,14 +217,26 @@
     </script>
     <script>
         function ExportExcel() {
+            var start = document.getElementById("StartDate").value;
+            var end = document.getElementById("EndDate").value;
+            console.log("Start date: " + start);
+            console.log("End date: " + end);
             var url = '@Url.Action("ExportToExcel", "Report")';
-            var reportdate = $("#StartDate").val();
-            //var nodetype = $("#NodeType").val();
-            // var WorkShift = $("#WorkShift").val();
-            //?FromDate = 2019 % 2F05% 2F01& ToDate=2019 % 2F05% 2F09& Customer=3
-            var ExcelURL = url + '?ReportDate=' + reportdate;
+            var stringData = "?startDate=" + start + "&endDate=" + end;
+            var ExcelURL = url + stringData;
+            console.log("End URL: " + ExcelURL);
             window.location.href = ExcelURL;
-        };
+        }
+        //function ExportExcel() {
+                //    var url = '@Url.Action("ExportToExcel", "Report")';
+                //    var reportdate = $("#StartDate").val();
+                //    //var nodetype = $("#NodeType").val();
+                //    // var WorkShift = $("#WorkShift").val();
+                //    //?FromDate = 2019 % 2F05% 2F01& ToDate=2019 % 2F05% 2F09& Customer=3
+                //    var ExcelURL = url + '?ReportDate=' + reportdate;
+                //    window.location.href = ExcelURL;
+                //};
+
     </script>
 
 
